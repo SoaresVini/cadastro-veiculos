@@ -13,6 +13,17 @@ public class mVeiculo {
 	
 	LocalDate
 			wAnoModelo;
+	
+	Boolean
+			wNacional;
+
+	public Boolean getwNacional() {
+		return wNacional;
+	}
+
+	public void setwNacional(Boolean wNacional) {
+		this.wNacional = wNacional;
+	}
 
 	public String getwPlaca() {
 		return wPlaca;
