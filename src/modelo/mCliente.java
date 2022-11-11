@@ -11,7 +11,7 @@ public class mCliente {
 			wSexo,
 			wNumeroTelefone,
 			wGmail;
-	
+
 	LocalDate 
 			wDataNascimento;
 

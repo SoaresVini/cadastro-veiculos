@@ -1,16 +1,21 @@
 package visao;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
+
 public class jMenu extends JFrame {
 
-	private JPanel contentPane;
 
+	private JPanel contentPane;
+	private boolean visible = false;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -40,6 +45,14 @@ public class jMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btCadastrarCliente = new JButton("Cadastrar Cliente");
+	    btCadastrarCliente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new jCadastroCliente().setVisible(true);
+				
+			}
+		});
 		btCadastrarCliente.setBounds(97, 9, 180, 25);
 		contentPane.add(btCadastrarCliente);
 		
@@ -48,11 +61,25 @@ public class jMenu extends JFrame {
 		contentPane.add(btConsulta);
 		
 		JButton btCadastrarVeiculo = new JButton("Cadastrar Veiculo");
+		btCadastrarVeiculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new jCadastroVeiculo().setVisible(true);
+			}
+		});
 		btCadastrarVeiculo.setBounds(97, 46, 180, 25);
 		contentPane.add(btCadastrarVeiculo);
 		
 		JButton btExit = new JButton("Exit");
+		btExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btExit.setBounds(97, 120, 180, 25);
 		contentPane.add(btExit);
+		
+		
 	}
+	
+
 }
