@@ -57,6 +57,14 @@ public class jMenu extends JFrame {
 		contentPane.add(btCadastrarCliente);
 		
 		JButton btConsulta = new JButton("Consulta");
+		btConsulta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new jConsulta().setVisible(true);
+				
+			}
+		});
 		btConsulta.setBounds(97, 83, 180, 25);
 		contentPane.add(btConsulta);
 		

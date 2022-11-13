@@ -60,7 +60,7 @@ public class jCadastroCliente extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lbTitulo = new JLabel("Cadastro Cliente");
-		lbTitulo.setBounds(130, 12, 158, 14);
+		lbTitulo.setBounds(174, 0, 158, 14);
 		lbTitulo.setVerticalAlignment(SwingConstants.TOP);
 		contentPane.add(lbTitulo);
 		
@@ -147,15 +147,32 @@ public class jCadastroCliente extends JFrame {
 				
 			}
 		});
-		btnFechar.setBounds(375, 232, 120, 23);
+		btnFechar.setBounds(393, 223, 102, 23);
 		contentPane.add(btnFechar);
 		
 		JButton btnGravar = new JButton("Gravar");
-		btnGravar.setBounds(375, 161, 120, 23);
+		btnGravar.setBounds(393, 165, 102, 23);
 		contentPane.add(btnGravar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(375, 197, 120, 23);
-		contentPane.add(btnCancelar);
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				cbSexo.setSelectedItem("");
+				edCpf.setText("");
+				edNome.setText("");
+				edCnh.setText("");
+				edData.setText("");
+				edGmail.setText("");
+				edTelefone.setText("");
+
+			}
+		});
+		btnLimpar.setBounds(393, 188, 102, 23);
+		contentPane.add(btnLimpar);
+		
+		
 	}
 }
