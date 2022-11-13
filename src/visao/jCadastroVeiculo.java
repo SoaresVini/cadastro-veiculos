@@ -45,7 +45,7 @@ public class jCadastroVeiculo extends JFrame {
 	 */
 	public jCadastroVeiculo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 419, 384);
+		setBounds(100, 100, 409, 384);
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,17 +58,17 @@ public class jCadastroVeiculo extends JFrame {
 		
 		JLabel lbNome = new JLabel("Dono do Veiculo:");
 		lbNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbNome.setBounds(62, 43, 95, 15);
+		lbNome.setBounds(29, 43, 128, 15);
 		contentPane.add(lbNome);
 		
 		JLabel lblPlaca = new JLabel("Placa:");
 		lblPlaca.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPlaca.setBounds(115, 86, 42, 15);
+		lblPlaca.setBounds(59, 86, 98, 15);
 		contentPane.add(lblPlaca);
 		
 		JLabel lbTipoVeiculo = new JLabel("Tipo de Veiculo:");
 		lbTipoVeiculo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbTipoVeiculo.setBounds(62, 120, 95, 15);
+		lbTipoVeiculo.setBounds(11, 120, 146, 15);
 		contentPane.add(lbTipoVeiculo);
 		
 		JLabel lbCor = new JLabel("Cor:");
@@ -123,7 +123,7 @@ public class jCadastroVeiculo extends JFrame {
 		
 		JLabel lbCombustivel = new JLabel("Tipo de Combustivel:");
 		lbCombustivel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCombustivel.setBounds(41, 218, 116, 15);
+		lbCombustivel.setBounds(8, 218, 149, 15);
 		contentPane.add(lbCombustivel);
 		
 		textField = new JTextField();
@@ -133,15 +133,15 @@ public class jCadastroVeiculo extends JFrame {
 		
 		JLabel lbAnoFabricacao = new JLabel("Ano de Frabricação:");
 		lbAnoFabricacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbAnoFabricacao.setBounds(41, 258, 116, 15);
+		lbAnoFabricacao.setBounds(9, 258, 148, 15);
 		contentPane.add(lbAnoFabricacao);
 		
 		JButton btFechar = new JButton("Fechar");
-		btFechar.setBounds(304, 312, 89, 23);
+		btFechar.setBounds(290, 314, 89, 23);
 		contentPane.add(btFechar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(163, 312, 89, 23);
+		btnCancelar.setBounds(139, 313, 132, 23);
 		contentPane.add(btnCancelar);
 		
 		JButton btGravar = new JButton("Gravar");

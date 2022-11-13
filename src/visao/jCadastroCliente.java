@@ -18,12 +18,12 @@ import javax.swing.ImageIcon;
 public class jCadastroCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField edNome;
+	private JTextField edCnh;
+	private JTextField edCpf;
+	private JTextField edTelefone;
+	private JTextField edGmail;
+	private JTextField edData;
 	jMenu menu = new jMenu();
 	private boolean visible = false;
 	
@@ -59,103 +59,103 @@ public class jCadastroCliente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Cadastro Cliente");
-		lblNewLabel.setBounds(116, 11, 109, 14);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		contentPane.add(lblNewLabel);
+		JLabel lbTitulo = new JLabel("Cadastro Cliente");
+		lbTitulo.setBounds(130, 12, 158, 14);
+		lbTitulo.setVerticalAlignment(SwingConstants.TOP);
+		contentPane.add(lbTitulo);
 		
-		JLabel lblNewLabel_1 = new JLabel("CPF :  ");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(55, 130, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lbCpf = new JLabel("CPF :  ");
+		lbCpf.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbCpf.setBounds(55, 130, 46, 14);
+		contentPane.add(lbCpf);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Nome : ");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_1.setBounds(46, 52, 55, 14);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lbNome = new JLabel("Nome : ");
+		lbNome.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbNome.setBounds(46, 52, 55, 14);
+		contentPane.add(lbNome);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("CNH :  ");
-		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_2.setBounds(55, 165, 46, 14);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel lbCnh = new JLabel("CNH :  ");
+		lbCnh.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbCnh.setBounds(55, 165, 46, 14);
+		contentPane.add(lbCnh);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Telefone :  ");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2_1.setBounds(36, 201, 65, 14);
-		contentPane.add(lblNewLabel_2_1);
+		JLabel lbTelefone = new JLabel("Telefone :  ");
+		lbTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbTelefone.setBounds(12, 201, 89, 14);
+		contentPane.add(lbTelefone);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Gmail :  ");
-		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2_1_1.setBounds(46, 236, 55, 14);
-		contentPane.add(lblNewLabel_2_1_1);
+		JLabel lbGmail = new JLabel("Gmail :  ");
+		lbGmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbGmail.setBounds(22, 236, 79, 14);
+		contentPane.add(lbGmail);
 		
-		textField = new JTextField();
-		textField.setBounds(126, 49, 222, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel lbData = new JLabel("Data :  ");
+		lbData.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbData.setBounds(12, 89, 89, 14);
+		contentPane.add(lbData);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(126, 162, 220, 20);
-		contentPane.add(textField_1);
+		JLabel lbImg = new JLabel("New label");
+		lbImg.setIcon(new ImageIcon(jCadastroCliente.class.getResource("/visao/149071_resized.png")));
+		lbImg.setBounds(393, 24, 102, 105);
+		contentPane.add(lbImg);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(126, 127, 222, 20);
-		contentPane.add(textField_2);
+		JLabel lbSexo = new JLabel("Sexo :   ");
+		lbSexo.setBounds(50, 277, 62, 18);
+		contentPane.add(lbSexo);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(126, 198, 148, 20);
-		contentPane.add(textField_3);
+		edNome = new JTextField();
+		edNome.setBounds(126, 49, 222, 20);
+		contentPane.add(edNome);
+		edNome.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(126, 233, 222, 20);
-		contentPane.add(textField_4);
+		edCnh = new JTextField();
+		edCnh.setColumns(10);
+		edCnh.setBounds(126, 162, 220, 20);
+		contentPane.add(edCnh);
 		
-		JLabel lblNewLabel_2 = new JLabel("Sexo :   ");
-		lblNewLabel_2.setBounds(66, 281, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		edCpf = new JTextField();
+		edCpf.setColumns(10);
+		edCpf.setBounds(126, 127, 222, 20);
+		contentPane.add(edCpf);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(126, 86, 86, 20);
-		contentPane.add(textField_5);
+		edTelefone = new JTextField();
+		edTelefone.setColumns(10);
+		edTelefone.setBounds(126, 198, 148, 20);
+		contentPane.add(edTelefone);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Data :  ");
-		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_3.setBounds(55, 89, 46, 14);
-		contentPane.add(lblNewLabel_1_3);
+		edGmail = new JTextField();
+		edGmail.setColumns(10);
+		edGmail.setBounds(126, 233, 222, 20);
+		contentPane.add(edGmail);
+		
+		edData = new JTextField();
+		edData.setColumns(10);
+		edData.setBounds(126, 86, 148, 20);
+		contentPane.add(edData);
 		
 		JComboBox<String>cbSexo = new JComboBox();
-		cbSexo.setBounds(126, 277, 86, 22);
+		cbSexo.setBounds(126, 277, 148, 22);
 		cbSexo.addItem("");
 		cbSexo.addItem("masculino");
 		cbSexo.addItem("Feminino");
 		contentPane.add(cbSexo);
 		
-		JButton btFechar = new JButton("Fechar");
-		btFechar.addActionListener(new ActionListener() {
+		JButton btnFechar = new JButton("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
 			}
 		});
-		btFechar.setBounds(406, 232, 89, 23);
-		contentPane.add(btFechar);
+		btnFechar.setBounds(375, 232, 120, 23);
+		contentPane.add(btnFechar);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon(jCadastroCliente.class.getResource("/visao/149071_resized.png")));
-		lblNewLabel_3.setBounds(393, 24, 102, 105);
-		contentPane.add(lblNewLabel_3);
-		
-		JButton btGravar = new JButton("Gravar");
-		btGravar.setBounds(406, 174, 89, 23);
-		contentPane.add(btGravar);
+		JButton btnGravar = new JButton("Gravar");
+		btnGravar.setBounds(375, 161, 120, 23);
+		contentPane.add(btnGravar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(406, 197, 89, 23);
+		btnCancelar.setBounds(375, 197, 120, 23);
 		contentPane.add(btnCancelar);
 	}
 }
