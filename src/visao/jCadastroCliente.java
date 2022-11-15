@@ -136,7 +136,7 @@ public class jCadastroCliente extends JFrame {
 		JComboBox<String>cbSexo = new JComboBox();
 		cbSexo.setBounds(126, 277, 148, 22);
 		cbSexo.addItem("");
-		cbSexo.addItem("masculino");
+		cbSexo.addItem("Masculino");
 		cbSexo.addItem("Feminino");
 		contentPane.add(cbSexo);
 		
@@ -147,11 +147,11 @@ public class jCadastroCliente extends JFrame {
 				
 			}
 		});
-		btnFechar.setBounds(393, 223, 102, 23);
+		btnFechar.setBounds(393, 227, 102, 23);
 		contentPane.add(btnFechar);
 		
 		JButton btnGravar = new JButton("Gravar");
-		btnGravar.setBounds(393, 165, 102, 23);
+		btnGravar.setBounds(393, 159, 102, 23);
 		contentPane.add(btnGravar);
 		
 		JButton btnLimpar = new JButton("Limpar");
@@ -170,7 +170,7 @@ public class jCadastroCliente extends JFrame {
 
 			}
 		});
-		btnLimpar.setBounds(393, 188, 102, 23);
+		btnLimpar.setBounds(393, 194, 102, 23);
 		contentPane.add(btnLimpar);
 		
 		

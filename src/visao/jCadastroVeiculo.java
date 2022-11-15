@@ -96,7 +96,7 @@ public class jCadastroVeiculo extends JFrame {
 		
 		JCheckBox ckFabicacao = new JCheckBox("Fabricação Nacional");
 		ckFabicacao.setFont(new Font("FreeSans", Font.BOLD, 10));
-		ckFabicacao.setBounds(207, 260, 133, 23);
+		ckFabicacao.setBounds(198, 259, 133, 23);
 		contentPane.add(ckFabicacao);
 		
 		edPlaca = new JTextField();
@@ -144,11 +144,11 @@ public class jCadastroVeiculo extends JFrame {
 				
 			}
 		});
-		btFechar.setBounds(369, 198, 102, 23);
+		btFechar.setBounds(369, 229, 102, 23);
 		contentPane.add(btFechar);
 		
 		JButton btLimpar = new JButton("Limpar");
-		btLimpar.setBounds(369, 163, 102, 23);
+		btLimpar.setBounds(369, 196, 102, 23);
 		btLimpar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -169,7 +169,7 @@ public class jCadastroVeiculo extends JFrame {
 		contentPane.add(btLimpar);
 		
 		JButton btGravar = new JButton("Gravar");
-		btGravar.setBounds(369, 140, 102, 23);
+		btGravar.setBounds(369, 161, 102, 23);
 		contentPane.add(btGravar);
 		
 		

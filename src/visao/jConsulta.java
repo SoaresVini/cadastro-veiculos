@@ -78,17 +78,17 @@ public class jConsulta extends JFrame {
 
 		JLabel lblNewLabel_1_1 = new JLabel("Veiculos:");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_1.setBounds(12, 164, 70, 15);
+		lblNewLabel_1_1.setBounds(12, 136, 70, 15);
 		contentPane.add(lblNewLabel_1_1);
 
 		JComboBox cbVeiculos = new JComboBox();
-		cbVeiculos.setBounds(100, 159, 114, 24);
+		cbVeiculos.setBounds(100, 136, 114, 24);
 		contentPane.add(cbVeiculos);
 
 		edCnh = new JTextField();
 		edCnh.setEditable(false);
 		edCnh.setColumns(10);
-		edCnh.setBounds(100, 123, 167, 19);
+		edCnh.setBounds(100, 102, 167, 19);
 		contentPane.add(edCnh);
 
 		JLabel lblNome = new JLabel("Nome:");
@@ -98,7 +98,7 @@ public class jConsulta extends JFrame {
 
 		JLabel lblCnh = new JLabel("CNH:");
 		lblCnh.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCnh.setBounds(12, 125, 70, 15);
+		lblCnh.setBounds(12, 104, 70, 15);
 		contentPane.add(lblCnh);
 
 		JButton btEditar = new JButton("Editar");
