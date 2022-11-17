@@ -10,8 +10,21 @@ public class cClienteControl {
 	
 	public void ClienteControl() { this.TableClientes = new ArrayList<>(); }
 	
+	private static cClienteControl c = null;
+	
+	public static cClienteControl getIntancia() {
+		if (c == null) {
+			c = new cClienteControl ();
+		}
+		return c;
+	}
+	private cClienteControl() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//INSERT
 	public Boolean inserir(mCliente c) {
+		this.TableClientes.add(c);
 		return false;
 	}
 	//UPDATE
