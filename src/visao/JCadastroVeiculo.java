@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
-public class jCadastroVeiculo extends JFrame {
+public class JCadastroVeiculo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField edPlaca;
@@ -32,7 +32,7 @@ public class jCadastroVeiculo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jCadastroVeiculo frame = new jCadastroVeiculo();
+					JCadastroVeiculo frame = new JCadastroVeiculo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class jCadastroVeiculo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jCadastroVeiculo() {
+	public JCadastroVeiculo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 532, 339);
 		contentPane = new JPanel();
@@ -178,7 +178,7 @@ public class jCadastroVeiculo extends JFrame {
 		*/
 		
 		JLabel lbImg = new JLabel("New label");
-		lbImg.setIcon(new ImageIcon(jCadastroVeiculo.class.getResource("/visao/2277327-200_resized.png")));
+		lbImg.setIcon(new ImageIcon(JCadastroVeiculo.class.getResource("/visao/2277327-200_resized.png")));
 		lbImg.setBounds(369, 26, 102, 83);
 		contentPane.add(lbImg);
 		

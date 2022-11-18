@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 
-public class jMenu extends JFrame {
+public class JMenu extends JFrame {
 
 
 	private JPanel contentPane;
@@ -23,7 +23,7 @@ public class jMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jMenu frame = new jMenu();
+					JMenu frame = new JMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class jMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jMenu() {
+	public JMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 199);
 		contentPane = new JPanel();
@@ -49,7 +49,7 @@ public class jMenu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new jCadastroCliente().setVisible(true);
+				new JCadastroCliente().setVisible(true);
 				
 			}
 		});
@@ -61,7 +61,7 @@ public class jMenu extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new jConsulta().setVisible(true);
+				new JConsulta().setVisible(true);
 				
 			}
 		});
@@ -71,7 +71,7 @@ public class jMenu extends JFrame {
 		JButton btCadastrarVeiculo = new JButton("Cadastrar Veiculo");
 		btCadastrarVeiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new jCadastroVeiculo().setVisible(true);
+				new JCadastroVeiculo().setVisible(true);
 			}
 		});
 		btCadastrarVeiculo.setBounds(97, 46, 180, 25);
@@ -86,8 +86,6 @@ public class jMenu extends JFrame {
 		btExit.setBounds(97, 120, 180, 25);
 		contentPane.add(btExit);
 		
-		
 	}
-	
 
 }

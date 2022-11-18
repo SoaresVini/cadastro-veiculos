@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controle.cClienteControl;
-import modelo.mCliente;
+import controle.CClienteControl;
+import modelo.MCliente;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
-public class jCadastroCliente extends JFrame {
+public class JCadastroCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField edNome;
@@ -30,9 +30,9 @@ public class jCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
-	jMenu menu = new jMenu();
+	JMenu menu = new JMenu();
 	private boolean visible = false;
-	public  cClienteControl listPessoa =  cClienteControl.getIntancia();
+	public  CClienteControl listPessoa =  CClienteControl.getIntancia();
 
 	/**
 	 * Launch the application.
@@ -41,7 +41,7 @@ public class jCadastroCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jCadastroCliente frame = new jCadastroCliente();
+					JCadastroCliente frame = new JCadastroCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class jCadastroCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jCadastroCliente() {
+	public JCadastroCliente() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 537, 350);
@@ -99,7 +99,7 @@ public class jCadastroCliente extends JFrame {
 		contentPane.add(lbData);
 
 		JLabel lbImg = new JLabel("New label");
-		lbImg.setIcon(new ImageIcon(jCadastroCliente.class.getResource("/visao/149071_resized.png")));
+		lbImg.setIcon(new ImageIcon(JCadastroCliente.class.getResource("/visao/149071_resized.png")));
 		lbImg.setBounds(393, 24, 102, 105);
 		contentPane.add(lbImg);
 
@@ -171,7 +171,7 @@ public class jCadastroCliente extends JFrame {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				LocalDate date = LocalDate.parse(data, formatter);
 				
-				mCliente c = new mCliente();
+				MCliente c = new MCliente();
 				
 				c.setWNome(nome);
 				c.setwCarteiraMotorista(cnh);

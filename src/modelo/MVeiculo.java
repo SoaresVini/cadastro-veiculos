@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class mVeiculo {
+public class MVeiculo {
 	
 	String	
 			wPlaca,

@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class mCliente {	
+public class MCliente {	
 
 	String  
 			wCpf,

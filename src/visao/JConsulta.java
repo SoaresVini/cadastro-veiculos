@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class jConsulta extends JFrame {
+public class JConsulta extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField edNome;
@@ -35,7 +35,7 @@ public class jConsulta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jConsulta frame = new jConsulta();
+					JConsulta frame = new JConsulta();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class jConsulta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jConsulta() {
+	public JConsulta() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 247);
 		contentPane = new JPanel();
