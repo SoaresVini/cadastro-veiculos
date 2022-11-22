@@ -1,6 +1,6 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +10,7 @@ import controle.CClienteControl;
 import modelo.MCliente;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -31,8 +32,7 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edGmail;
 	private JTextField edData;
 	JMenu menu = new JMenu();
-	private boolean visible = false;
-	public  CClienteControl listPessoa =  CClienteControl.getIntancia();
+	
 
 	/**
 	 * Launch the application.
@@ -166,24 +166,30 @@ public class JCadastroCliente extends JFrame {
 				String Sexo = cbSexo.getSelectedItem().toString();
 				String gmail = edGmail.getText();
 				String telefone = edTelefone.getText();
-				String data = edData.getText();
+				//String data = edData.getText();
 
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				LocalDate date = LocalDate.parse(data, formatter);
+				//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				//LocalDate date = LocalDate.parse(data, formatter);
 				
-				MCliente c = new MCliente();
+				MCliente Mc = new MCliente();
 				
-				c.setWNome(nome);
-				c.setwCarteiraMotorista(cnh);
-				c.setwCpf(cpf);
-				c.setwGmail(gmail);
-				c.setwNumeroTelefone(telefone);
-				c.setwSexo(Sexo);
-				c.setwDataNascimento(date);
+				if ( nome == null || nome.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "cafe");
+				}else {
+					Mc.setWNome(nome);
+				}
 				
-				listPessoa.inserir(c);
+				Mc.setwCarteiraMotorista(cnh);
+				Mc.setwCpf(cpf);
+				Mc.setwGmail(gmail);
+				Mc.setwNumeroTelefone(telefone);
+				Mc.setwSexo(Sexo);
+				//Mc.setwDataNascimento(date);
 				
-				dispose();       
+				CClienteControl TableCliente = CClienteControl.getIntancia();
+				Boolean insert = TableCliente.inserir(Mc);
+				
+				dispose();   
 
 			}
 		});

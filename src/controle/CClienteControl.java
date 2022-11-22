@@ -1,30 +1,31 @@
 package controle;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 import modelo.MCliente;
 
 public class CClienteControl {
 	
-	private ArrayList<MCliente> TableClientes;
+	private static ArrayList<MCliente> TableClientes;
 	
-	public void ClienteControl() { this.TableClientes = new ArrayList<>(); }
 	
-	private static CClienteControl c = null;
+	private static CClienteControl instancia;
 	
 	public static CClienteControl getIntancia() {
-		if (c == null) {
-			c = new CClienteControl ();
+		if (instancia == null) {
+			instancia = new CClienteControl ();
+			TableClientes = new ArrayList<>();
 		}
-		return c;
-	}
-	private CClienteControl() {
-		// TODO Auto-generated constructor stub
-	}
+		return instancia;
+	} 
 
 	//INSERT
-	public Boolean inserir(MCliente c) {
-		this.TableClientes.add(c);
+	public Boolean inserir(MCliente Mc) {
+		
+		if (Mc != null) {
+		this.TableClientes.add(Mc);
+		return true;
+		}
 		return false;
 	}
 	//UPDATE
