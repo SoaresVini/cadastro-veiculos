@@ -1,10 +1,11 @@
 package visao;
 
-import java.awt.EventQueue; 
-
+import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import controle.CClienteControl;
 import modelo.MCliente;
@@ -15,10 +16,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -32,27 +34,7 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edGmail;
 	private JTextField edData;
 	JMenu menu = new JMenu();
-	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JCadastroCliente frame = new JCadastroCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public JCadastroCliente() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,16 +96,31 @@ public class JCadastroCliente extends JFrame {
 
 		edCnh = new JTextField();
 		edCnh.setColumns(10);
+		try {
+			edCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		edCnh.setBounds(126, 162, 220, 20);
 		contentPane.add(edCnh);
 
 		edCpf = new JTextField();
 		edCpf.setColumns(10);
+		try {
+			edCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		edCpf.setBounds(126, 127, 222, 20);
 		contentPane.add(edCpf);
 
 		edTelefone = new JTextField();
 		edTelefone.setColumns(10);
+		try {
+			edTelefone = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		edTelefone.setBounds(126, 198, 148, 20);
 		contentPane.add(edTelefone);
 
@@ -134,6 +131,11 @@ public class JCadastroCliente extends JFrame {
 
 		edData = new JTextField();
 		edData.setColumns(10);
+		try {
+			edData = new JFormattedTextField(new MaskFormatter("##/##/####"));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		edData.setBounds(126, 86, 148, 20);
 		contentPane.add(edData);
 
@@ -154,50 +156,79 @@ public class JCadastroCliente extends JFrame {
 		btnFechar.setBounds(393, 227, 102, 23);
 		contentPane.add(btnFechar);
 
-		JButton btnGravar = new JButton("Gravar");
-		btnGravar.addActionListener(new ActionListener() {
+		JButton btGravar = new JButton("Gravar");
+		btGravar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String nome = edNome.getText();
-				String cpf = edCpf.getText();
-				String cnh = edCnh.getText();
-				String Sexo = cbSexo.getSelectedItem().toString();
-				String gmail = edGmail.getText();
-				String telefone = edTelefone.getText();
-				//String data = edData.getText();
+				String wNome = edNome.getText();
+				String wCpf = edCpf.getText();
+				String wCnh = edCnh.getText();
+				String wSexo = cbSexo.getSelectedItem().toString();
+				String wEmail = edGmail.getText();
+				String wTelefone = edTelefone.getText();
+				String wData = edData.getText();
 
-				//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-				//LocalDate date = LocalDate.parse(data, formatter);
-				
 				MCliente Mc = new MCliente();
-				
-				if ( nome == null || nome.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "cafe");
-				}else {
-					Mc.setWNome(nome);
+
+				if (wNome == null || wNome.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nome Invalido");
+				} else {
+					Mc.setWNome(wNome);
+				}
+
+				if (wCpf == null || wCpf.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "CPF Invalido");
+				} else {
+					Mc.setwCpf(wCpf);
+				}
+
+				if (wCnh == null || wCnh.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "CNH Invalido");
+				} else {
+					Mc.setwCarteiraMotorista(wCnh);
 				}
 				
-				Mc.setwCarteiraMotorista(cnh);
-				Mc.setwCpf(cpf);
-				Mc.setwGmail(gmail);
-				Mc.setwNumeroTelefone(telefone);
-				Mc.setwSexo(Sexo);
-				//Mc.setwDataNascimento(date);
+				if (wEmail == null || wEmail.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Email Invalido");
+				} else {
+					Mc.setwGmail(wEmail);
+				}
 				
-				CClienteControl TableCliente = CClienteControl.getInstancia();
+				if (wTelefone == null || wTelefone.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Telefone Invalido");
+				} else {
+					Mc.setwNumeroTelefone(wTelefone);
+				}
+				
+				if (wSexo == null || wSexo.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Sexo Invalido");
+				} else {
+					Mc.setwSexo(wSexo);
+				}
+				
+				
+				if (wData == null || wData.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Data Invalida");
+				} else {
+					//Mc.setwDataNascimento(wData);
+				}
+				
+			
+
+				CClienteControl TableCliente = CClienteControl.getIntancia();
 				Boolean insert = TableCliente.inserir(Mc);
-				
-				dispose();   
+
+				dispose();
 
 			}
 		});
-		btnGravar.setBounds(393, 159, 102, 23);
-		contentPane.add(btnGravar);
+		btGravar.setBounds(393, 159, 102, 23);
+		contentPane.add(btGravar);
 
-		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new ActionListener() {
+		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -212,8 +243,8 @@ public class JCadastroCliente extends JFrame {
 
 			}
 		});
-		btnLimpar.setBounds(393, 194, 102, 23);
-		contentPane.add(btnLimpar);
+		btLimpar.setBounds(393, 194, 102, 23);
+		contentPane.add(btLimpar);
 
 	}
 }

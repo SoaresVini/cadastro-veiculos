@@ -30,25 +30,7 @@ public class JCadastroVeiculo extends JFrame {
 	private JTextField edMarca;
 	private JTextField edFabricacao;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JCadastroVeiculo frame = new JCadastroVeiculo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public JCadastroVeiculo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 532, 339);
