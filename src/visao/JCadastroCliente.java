@@ -186,7 +186,7 @@ public class JCadastroCliente extends JFrame {
 				Mc.setwSexo(Sexo);
 				//Mc.setwDataNascimento(date);
 				
-				CClienteControl TableCliente = CClienteControl.getIntancia();
+				CClienteControl TableCliente = CClienteControl.getInstancia();
 				Boolean insert = TableCliente.inserir(Mc);
 				
 				dispose();   

@@ -6,12 +6,23 @@ import modelo.MVeiculo;
 
 public class CVeiculoControl {
 
-	private ArrayList<MVeiculo> TabelVeiculos;
+	private static ArrayList<MVeiculo> TableVeiculos;
 	
-	public void VeiculoControl() { this.TabelVeiculos = new ArrayList<>(); }
+	private static CVeiculoControl instancia;
 	
+	public static CVeiculoControl getInstacia() {
+		if (instancia == null) {
+			instancia = new CVeiculoControl();
+			TableVeiculos = new ArrayList<>();
+		}
+		return instancia;
+	}
 	//INSERT
 	public Boolean inserir(MVeiculo v) {
+		if (v != null) {
+			this.TableVeiculos.add(v);
+			return true;
+		}
 		return false;
 	}
 	//UPDATE

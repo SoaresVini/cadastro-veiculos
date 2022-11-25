@@ -11,7 +11,7 @@ public class CClienteControl {
 	
 	private static CClienteControl instancia;
 	
-	public static CClienteControl getIntancia() {
+	public static CClienteControl getInstancia() {
 		if (instancia == null) {
 			instancia = new CClienteControl ();
 			TableClientes = new ArrayList<>();
@@ -21,7 +21,6 @@ public class CClienteControl {
 
 	//INSERT
 	public Boolean inserir(MCliente Mc) {
-		
 		if (Mc != null) {
 		this.TableClientes.add(Mc);
 		return true;

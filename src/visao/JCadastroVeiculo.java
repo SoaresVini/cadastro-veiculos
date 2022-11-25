@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -14,8 +15,12 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+
+import controle.CVeiculoControl;
+import modelo.MVeiculo;
 
 public class JCadastroVeiculo extends JFrame {
 
@@ -164,11 +169,54 @@ public class JCadastroVeiculo extends JFrame {
 				
 			}
 		});
-		
-		
 		contentPane.add(btLimpar);
 		
+//		String	
+//		wPlaca,
+//		wTipoVeiculo,
+//		wCor,
+//		wMarca,
+//		wCombustivel;
+//
+//LocalDate
+//		wAnoModelo;
+//
+//Boolean
+//		wNacional;
+		
 		JButton btGravar = new JButton("Gravar");
+		btGravar.addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String wPlaca 		= edPlaca.getText();
+				String wCor 		= edCor.getText();
+				String wMarca 		= edMarca.getText();
+				String wNome		= cbDonoVeiculo.getSelectedItem().toString();
+				String wCombustivel = cbCombustivel.getSelectedItem().toString();
+				String wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();	
+				String wAnoModelo   = edFabricacao.getText();
+				//String wNacional    = ckFabicacao.
+				
+				MVeiculo Mv = new MVeiculo();
+				// Dados da Placa 
+				if (wPlaca == null || wPlaca.isEmpty()) {
+					JOptionPane.showInternalMessageDialog(null, "Preencha o número da placa");
+				} else {
+					Mv.setwPlaca(wPlaca);
+				}
+				
+				// Dados da Cor 
+				if (wCor == null || wCor.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha as cores");
+				} else {
+					Mv.setwCor(wCor);
+				}
+				
+			}
+		});
+		
+		
 		btGravar.setBounds(369, 161, 102, 23);
 		contentPane.add(btGravar);
 		
