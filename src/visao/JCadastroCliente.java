@@ -1,11 +1,12 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+import javax.xml.crypto.Data;
 
 import controle.CClienteControl;
 import modelo.MCliente;
@@ -21,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -33,6 +35,8 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
+
+	
 	JMenu menu = new JMenu();
 
 	public JCadastroCliente() {
@@ -97,7 +101,7 @@ public class JCadastroCliente extends JFrame {
 		edCnh = new JTextField();
 		edCnh.setColumns(10);
 		try {
-			edCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			edCnh = new JFormattedTextField(new MaskFormatter("###########"));
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -168,59 +172,77 @@ public class JCadastroCliente extends JFrame {
 				String wSexo = cbSexo.getSelectedItem().toString();
 				String wEmail = edGmail.getText();
 				String wTelefone = edTelefone.getText();
-				String wData = edData.getText();
-
+				String wDataTest = edData.getText();
+				LocalDate wData = LocalDate.parse(edData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				Integer contValidacao = 0;
+				
 				MCliente Mc = new MCliente();
+				
+				
 
 				if (wNome == null || wNome.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Nome Invalido");
+					dispose();
+					
+					setVisible(true);
+				
 				} else {
+					contValidacao ++;
 					Mc.setWNome(wNome);
 				}
 
 				if (wCpf == null || wCpf.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "CPF Invalido");
 				} else {
+					contValidacao ++;
 					Mc.setwCpf(wCpf);
 				}
 
 				if (wCnh == null || wCnh.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "CNH Invalido");
 				} else {
+					contValidacao ++;
 					Mc.setwCarteiraMotorista(wCnh);
 				}
 				
 				if (wEmail == null || wEmail.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Email Invalido");
 				} else {
+					contValidacao ++;
 					Mc.setwGmail(wEmail);
 				}
 				
 				if (wTelefone == null || wTelefone.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Telefone Invalido");
 				} else {
+					contValidacao ++;
 					Mc.setwNumeroTelefone(wTelefone);
 				}
 				
 				if (wSexo == null || wSexo.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Sexo Invalido");
 				} else {
+					contValidacao ++;
 					Mc.setwSexo(wSexo);
 				}
 				
 				
-				if (wData == null || wData.isEmpty()) {
+				if (wDataTest == null || wDataTest.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Data Invalida");
 				} else {
-					//Mc.setwDataNascimento(wData);
+					contValidacao ++;
+					Mc.setwDataNascimento(wData);
 				}
 				
-			
 
-				CClienteControl TableCliente = CClienteControl.getIntancia();
+				CClienteControl TableCliente = CClienteControl.getInstancia();
 				Boolean insert = TableCliente.inserir(Mc);
 
-				dispose();
+				if (contValidacao == 7) {
+					
+					JOptionPane.showMessageDialog(null, "Dados confirmados");
+					dispose();
+				}
 
 			}
 		});

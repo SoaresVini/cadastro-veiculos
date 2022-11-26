@@ -39,4 +39,6 @@ public class CClienteControl {
 	public ArrayList<MCliente> listaCliente(){
 		return null;
 	}
+
+
 }
