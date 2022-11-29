@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -15,12 +16,17 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import controle.CVeiculoControl;
 import modelo.MVeiculo;
+import visao.JCadastroCliente;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 
 public class JCadastroVeiculo extends JFrame {
 
@@ -28,6 +34,7 @@ public class JCadastroVeiculo extends JFrame {
 	private JTextField edPlaca;
 	private JTextField edCor;
 	private JTextField edMarca;
+	private JTextField cbDonoVeiculo;
 	private JTextField edFabricacao;
 
 
@@ -77,10 +84,6 @@ public class JCadastroVeiculo extends JFrame {
 		cbTipoVeiculo.addItem("Caminhão");
 		contentPane.add(cbTipoVeiculo);
 		
-		JComboBox cbDonoVeiculo = new JComboBox();
-		cbDonoVeiculo.setBounds(202, 37, 114, 23);
-		contentPane.add(cbDonoVeiculo);
-		
 		JCheckBox ckFabicacao = new JCheckBox("Fabricação Nacional");
 		ckFabicacao.setFont(new Font("FreeSans", Font.BOLD, 10));
 		ckFabicacao.setBounds(198, 259, 133, 23);
@@ -101,6 +104,17 @@ public class JCadastroVeiculo extends JFrame {
 		edMarca.setBounds(202, 167, 114, 19);
 		contentPane.add(edMarca);
 		
+		edFabricacao = new JTextField();
+		edFabricacao.setColumns(10);
+		try {
+			edFabricacao = new JFormattedTextField(new MaskFormatter("##/##/####"));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		edFabricacao.setBounds(202, 231, 114, 19);
+		contentPane.add(edFabricacao);
+		edFabricacao.setColumns(10);
+		
 		JComboBox<String> cbCombustivel= new JComboBox();
 		cbCombustivel.setBounds(202, 198, 114, 23);
 		cbCombustivel.addItem("");
@@ -109,15 +123,11 @@ public class JCadastroVeiculo extends JFrame {
 		cbCombustivel.addItem("Elétrico");
 		contentPane.add(cbCombustivel);
 		
+		
 		JLabel lbCombustivel = new JLabel("Tipo de Combustivel:");
 		lbCombustivel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbCombustivel.setBounds(0, 204, 157, 15);
 		contentPane.add(lbCombustivel);
-		
-		edFabricacao = new JTextField();
-		edFabricacao.setColumns(10);
-		edFabricacao.setBounds(202, 233, 114, 19);
-		contentPane.add(edFabricacao);
 		
 		JLabel lbAnoFabricacao = new JLabel("Ano de Frabricação:");
 		lbAnoFabricacao.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -131,6 +141,94 @@ public class JCadastroVeiculo extends JFrame {
 				
 			}
 		});
+
+		JButton btGravar = new JButton("Gravar");
+		btGravar.addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String wPlaca 		= edPlaca.		getText();
+				String wCor 		= edCor.		getText();
+				String wMarca 		= edMarca.		getText();
+				String wNome		= cbDonoVeiculo.getText();
+				String wCombustivel = cbCombustivel.getSelectedItem().toString();
+				String wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();	
+				LocalDate wAnoModelo= LocalDate.parse(edFabricacao.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				//String wNacional    = ckFabicacao.
+				
+				Integer contValidacao = 0;
+				
+				MVeiculo Mv = new MVeiculo();
+				
+				// Dados da Placa 
+				if (wPlaca == null || wPlaca.isEmpty()) {
+					JOptionPane.showInternalMessageDialog(null, "Preencha o número da placa");
+				} else {
+					Mv.setwPlaca(wPlaca);
+					contValidacao ++;
+				}
+				
+				// Dados da wCor 
+				if (wCor == null || wCor.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha a cores");
+				} else {
+					Mv.setwCor(wCor);
+					contValidacao ++;
+				}
+				
+				// Dados da wMarca 
+				if (wMarca == null || wMarca.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha a Marca");
+				} else {
+					Mv.setwMarca(wMarca);
+					contValidacao ++;
+				}
+				
+				// Dados da wNome
+				if (wNome == null || wNome.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o Nome");
+				} else {
+					Mv.setwMarca(wMarca);
+					contValidacao ++;
+				}
+				
+				// Dados da wCombustivel
+				if (wCombustivel == null || wCombustivel.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o Combustivel");
+				} else {
+					Mv.setwCombustivel(wCombustivel);
+					contValidacao ++;
+				}				
+				
+				// Dados do wTipoVeiculo
+				if (wTipoVeiculo == null || wTipoVeiculo.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha o Tipo do veiculo");
+				} else {
+					Mv.setwTipoVeiculo(wTipoVeiculo);
+					contValidacao ++;
+				}					
+				
+				// Dados do AnoModelo
+				if (wAnoModelo == null) {
+					JOptionPane.showMessageDialog(null, "Preencha o Ano do veiculo");
+				} else {
+					Mv.setwAnoModelo(wAnoModelo);
+					contValidacao ++;
+				}
+				
+				CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
+				Boolean insert = TableVeiculo.inserir(Mv);
+				
+				if (contValidacao == 7) {
+					JOptionPane.showMessageDialog(null, "Dados confirmados");
+					dispose();
+				}
+			}
+		});
+		
+		btGravar.setBounds(369, 161, 102, 23);
+		contentPane.add(btGravar);
+		
 		btFechar.setBounds(369, 229, 102, 23);
 		contentPane.add(btFechar);
 		
@@ -142,65 +240,15 @@ public class JCadastroVeiculo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				cbCombustivel.setSelectedItem("");
-				cbDonoVeiculo.setSelectedItem("");
+				cbDonoVeiculo.setText("");
 				cbTipoVeiculo.setSelectedItem("");
-				edCor.setText("");
-				edFabricacao.setText("");
-				edMarca.setText("");
-				edPlaca.setText("");
-				
+				edCor.		  setText("");
+				edFabricacao. setText("");
+				edMarca.      setText("");
+				edPlaca.      setText("");	
 			}
 		});
 		contentPane.add(btLimpar);
-		
-//		String	
-//		wPlaca,
-//		wTipoVeiculo,
-//		wCor,
-//		wMarca,
-//		wCombustivel;
-//
-//LocalDate
-//		wAnoModelo;
-//
-//Boolean
-//		wNacional;
-		
-		JButton btGravar = new JButton("Gravar");
-		btGravar.addActionListener(new ActionListener() {
-					
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String wPlaca 		= edPlaca.getText();
-				String wCor 		= edCor.getText();
-				String wMarca 		= edMarca.getText();
-				String wNome		= cbDonoVeiculo.getSelectedItem().toString();
-				String wCombustivel = cbCombustivel.getSelectedItem().toString();
-				String wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();	
-				String wAnoModelo   = edFabricacao.getText();
-				//String wNacional    = ckFabicacao.
-				
-				MVeiculo Mv = new MVeiculo();
-				// Dados da Placa 
-				if (wPlaca == null || wPlaca.isEmpty()) {
-					JOptionPane.showInternalMessageDialog(null, "Preencha o número da placa");
-				} else {
-					Mv.setwPlaca(wPlaca);
-				}
-				
-				// Dados da Cor 
-				if (wCor == null || wCor.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha as cores");
-				} else {
-					Mv.setwCor(wCor);
-				}
-				
-			}
-		});
-		
-		
-		btGravar.setBounds(369, 161, 102, 23);
-		contentPane.add(btGravar);
 		
 		
 		/*
@@ -212,6 +260,10 @@ public class JCadastroVeiculo extends JFrame {
 		lbImg.setBounds(369, 26, 102, 83);
 		contentPane.add(lbImg);
 		
+		cbDonoVeiculo = new JTextField();
+		cbDonoVeiculo.setBounds(202, 41, 114, 19);
+		contentPane.add(cbDonoVeiculo);
+		cbDonoVeiculo.setColumns(10);
 
 	}
 }

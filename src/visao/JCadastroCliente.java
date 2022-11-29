@@ -166,14 +166,15 @@ public class JCadastroCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String wNome = edNome.getText();
-				String wCpf = edCpf.getText();
-				String wCnh = edCnh.getText();
-				String wSexo = cbSexo.getSelectedItem().toString();
-				String wEmail = edGmail.getText();
+				String wNome 	 = edNome.getText();
+				String wCpf 	 = edCpf.getText();
+				String wCnh 	 = edCnh.getText();
+				String wSexo 	 = cbSexo.getSelectedItem().toString();
+				String wEmail 	 = edGmail.getText();
 				String wTelefone = edTelefone.getText();
 				String wDataTest = edData.getText();
-				LocalDate wData = LocalDate.parse(edData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				LocalDate wData  = LocalDate.parse(edData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				
 				Integer contValidacao = 0;
 				
 				MCliente Mc = new MCliente();
@@ -255,12 +256,12 @@ public class JCadastroCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				cbSexo.setSelectedItem("");
-				edCpf.setText("");
-				edNome.setText("");
-				edCnh.setText("");
-				edData.setText("");
-				edGmail.setText("");
+				cbSexo.	   setSelectedItem("");
+				edCpf. 	   setText("");
+				edNome.	   setText("");
+				edCnh. 	   setText("");
+				edData.	   setText("");
+				edGmail.   setText("");
 				edTelefone.setText("");
 
 			}

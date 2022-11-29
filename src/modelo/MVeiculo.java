@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class MVeiculo {
 	
 	String	
@@ -10,7 +12,17 @@ public class MVeiculo {
 			wCombustivel,
 			wData,
 			wNacional;
+	LocalDate
+			wAnoModelo;
 	
+	public LocalDate getwAnoModelo() {
+		return wAnoModelo;
+	}
+
+	public void setwAnoModelo(LocalDate wAnoModelo) {
+		this.wAnoModelo = wAnoModelo;
+	}
+
 	public String getwData() {
 		return wData;
 	}
