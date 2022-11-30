@@ -97,11 +97,11 @@ public class JMenu extends JFrame {
 		contentPane.add(btExit);
 		
 		JLabel lbTitulo = new JLabel("Pessoas Cadastradas");
-		lbTitulo.setBounds(10, 11, 139, 14);
+		lbTitulo.setBounds(10, 11, 180, 14);
 		contentPane.add(lbTitulo);
 		
 		JLabel lbTitulo2 = new JLabel("Veiculos Cadastrados");
-		lbTitulo2.setBounds(10, 154, 139, 14);
+		lbTitulo2.setBounds(10, 154, 167, 14);
 		contentPane.add(lbTitulo2);
 		
 		CClienteControl cc = CClienteControl.getInstancia(); 
