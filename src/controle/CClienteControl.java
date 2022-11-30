@@ -38,7 +38,7 @@ public class CClienteControl {
 	}
 	//SELECT
 	public ArrayList<MCliente> listaCliente(){
-		return null;
+		return TableClientes;
 	}
 
 }

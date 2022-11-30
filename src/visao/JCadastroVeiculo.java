@@ -220,20 +220,21 @@ public class JCadastroVeiculo extends JFrame {
 				Boolean insert = TableVeiculo.inserir(Mv);
 				
 				if (contValidacao == 7) {
+					contValidacao = 0;
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
 					dispose();
 				}
 			}
 		});
 		
-		btGravar.setBounds(369, 161, 102, 23);
+		btGravar.setBounds(369, 167, 102, 23);
 		contentPane.add(btGravar);
 		
 		btFechar.setBounds(369, 229, 102, 23);
 		contentPane.add(btFechar);
 		
 		JButton btLimpar = new JButton("Limpar");
-		btLimpar.setBounds(369, 196, 102, 23);
+		btLimpar.setBounds(369, 198, 102, 23);
 		btLimpar.addActionListener(new ActionListener() {
 			
 			@Override

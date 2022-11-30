@@ -6,9 +6,9 @@ public class MCliente {
 
 	String  
 			wCpf,
-			WNome = "Vinicius",
 			wCarteiraMotorista,
 			wSexo,
+			wNome,
 			wNumeroTelefone,
 			wGmail;
 
@@ -24,11 +24,11 @@ public class MCliente {
 	}
 
 	public String getWNome() {
-		return WNome;
+		return wNome;
 	}
 
 	public void setWNome(String wNome) {
-		WNome = wNome;
+		this.wNome = wNome;
 	}
 
 	public String getwCarteiraMotorista() {

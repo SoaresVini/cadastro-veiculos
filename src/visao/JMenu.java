@@ -3,16 +3,26 @@ package visao;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import controle.CClienteControl;
+import modelo.MCliente;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
 
 
 public class JMenu extends JFrame {
 
-
+	private JList<MCliente> listaCliente;
+	private MCliente DonoVeiculo = null;
 	private JPanel contentPane;
 	private boolean visible = false;
 	
@@ -37,7 +47,7 @@ public class JMenu extends JFrame {
 	 */
 	public JMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 391, 199);
+		setBounds(100, 100, 559, 363);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -53,7 +63,7 @@ public class JMenu extends JFrame {
 				
 			}
 		});
-		btCadastrarCliente.setBounds(97, 9, 180, 25);
+		btCadastrarCliente.setBounds(352, 35, 180, 25);
 		contentPane.add(btCadastrarCliente);
 		
 		JButton btConsulta = new JButton("Consulta");
@@ -65,7 +75,7 @@ public class JMenu extends JFrame {
 				
 			}
 		});
-		btConsulta.setBounds(97, 83, 180, 25);
+		btConsulta.setBounds(352, 107, 180, 25);
 		contentPane.add(btConsulta);
 		
 		JButton btCadastrarVeiculo = new JButton("Cadastrar Veiculo");
@@ -74,7 +84,7 @@ public class JMenu extends JFrame {
 				new JCadastroVeiculo().setVisible(true);
 			}
 		});
-		btCadastrarVeiculo.setBounds(97, 46, 180, 25);
+		btCadastrarVeiculo.setBounds(352, 71, 180, 25);
 		contentPane.add(btCadastrarVeiculo);
 		
 		JButton btExit = new JButton("Exit");
@@ -83,9 +93,36 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btExit.setBounds(97, 120, 180, 25);
+		btExit.setBounds(352, 143, 180, 25);
 		contentPane.add(btExit);
 		
+		JLabel lbTitulo = new JLabel("Pessoas Cadastradas");
+		lbTitulo.setBounds(10, 11, 139, 14);
+		contentPane.add(lbTitulo);
+		
+		JLabel lbTitulo2 = new JLabel("Veiculos Cadastrados");
+		lbTitulo2.setBounds(10, 154, 139, 14);
+		contentPane.add(lbTitulo2);
+		
+		CClienteControl cc = CClienteControl.getInstancia(); 
+		JList<MCliente> taPessoasCadastradas = new JList<>();
+		taPessoasCadastradas.setListData(new Vector<MCliente>(CClienteControl.getInstancia().listaCliente()));
+		taPessoasCadastradas.updateUI();
+		
+		listaCliente = new JList<MCliente>();
+		listaCliente.addListSelectionListener(new ListSelectionListener() {			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				DonoVeiculo = listaCliente.getSelectedValue();
+				if (DonoVeiculo != null) { System.out.println(DonoVeiculo); }
+			}
+		});
+		taPessoasCadastradas.setBounds(10, 35, 324, 109);
+		contentPane.add(taPessoasCadastradas);
+		
+		JList taVeiculosCadastrados_1 = new JList();
+		taVeiculosCadastrados_1.setBounds(10, 179, 324, 109);
+		contentPane.add(taVeiculosCadastrados_1);
+		
 	}
-
 }
