@@ -35,12 +35,12 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
-
 	
 	JMenu menu = new JMenu();
 
 	public JCadastroCliente() {
-
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 537, 350);
 		contentPane = new JPanel();
@@ -176,16 +176,13 @@ public class JCadastroCliente extends JFrame {
 				LocalDate wData  = LocalDate.parse(edData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 				
 				Integer contValidacao = 0;
-				
+	
 				MCliente Mc = new MCliente();
 				
 				
 
 				if (wNome == null || wNome.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Nome Invalido");
-					dispose();
-					
-					setVisible(true);
+					JOptionPane.showMessageDialog(null, "Preencha o nome do Cliente");
 				
 				} else {
 					contValidacao ++;
@@ -193,35 +190,35 @@ public class JCadastroCliente extends JFrame {
 				}
 
 				if (wCpf == null || wCpf.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "CPF Invalido");
+					JOptionPane.showMessageDialog(null, "Preencha o CPF");
 				} else {
 					contValidacao ++;
 					Mc.setwCpf(wCpf);
 				}
 
 				if (wCnh == null || wCnh.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "CNH Invalido");
+					JOptionPane.showMessageDialog(null, "Preencha o CNH");
 				} else {
 					contValidacao ++;
 					Mc.setwCarteiraMotorista(wCnh);
 				}
 				
 				if (wEmail == null || wEmail.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Email Invalido");
+					JOptionPane.showMessageDialog(null, "Preencha o Email");
 				} else {
 					contValidacao ++;
 					Mc.setwGmail(wEmail);
 				}
 				
 				if (wTelefone == null || wTelefone.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Telefone Invalido");
+					JOptionPane.showMessageDialog(null, "Preecha o Telefone");
 				} else {
 					contValidacao ++;
 					Mc.setwNumeroTelefone(wTelefone);
 				}
 				
 				if (wSexo == null || wSexo.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Sexo Invalido");
+					JOptionPane.showMessageDialog(null, "Preencha o Sexo");
 				} else {
 					contValidacao ++;
 					Mc.setwSexo(wSexo);
@@ -229,7 +226,7 @@ public class JCadastroCliente extends JFrame {
 				
 				
 				if (wDataTest == null || wDataTest.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Data Invalida");
+					JOptionPane.showMessageDialog(null, "Preencha a Data");
 				} else {
 					contValidacao ++;
 					Mc.setwDataNascimento(wData);
@@ -240,8 +237,9 @@ public class JCadastroCliente extends JFrame {
 				Boolean insert = TableCliente.inserir(Mc);
 
 				if (contValidacao == 7) {
-					
+				
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
+					contValidacao = 0;
 					dispose();
 				}
 

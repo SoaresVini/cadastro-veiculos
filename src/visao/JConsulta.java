@@ -1,13 +1,18 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue;  
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.multi.MultiColorChooserUI;
+
+import modelo.MCliente;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -64,6 +69,22 @@ public class JConsulta extends JFrame {
 
 		JComboBox cbVeiculos = new JComboBox();
 		cbVeiculos.setBounds(100, 136, 114, 24);
+		
+		
+		MCliente Mc = new MCliente();
+		
+		for (int i = 0; i <  Mc.getWNome().length(); i++) {
+					
+					String[] nome = new String[i];
+					
+					nome[i] = Mc.getWNome();
+				
+					 
+				}
+
+		
+		
+	
 		contentPane.add(cbVeiculos);
 
 		edCnh = new JTextField();

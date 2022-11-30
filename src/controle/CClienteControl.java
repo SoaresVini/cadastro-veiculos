@@ -1,6 +1,7 @@
 package controle;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import modelo.MCliente;
 
@@ -39,6 +40,5 @@ public class CClienteControl {
 	public ArrayList<MCliente> listaCliente(){
 		return null;
 	}
-
 
 }

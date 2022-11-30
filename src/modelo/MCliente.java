@@ -6,7 +6,7 @@ public class MCliente {
 
 	String  
 			wCpf,
-			WNome,
+			WNome = "Vinicius",
 			wCarteiraMotorista,
 			wSexo,
 			wNumeroTelefone,
