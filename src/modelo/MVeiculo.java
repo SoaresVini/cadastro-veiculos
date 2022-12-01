@@ -3,17 +3,26 @@ package modelo;
 import java.time.LocalDate;
 
 public class MVeiculo {
-	
+	Integer
+			wIDVeiculo;
+
 	String	
 			wPlaca,
 			wTipoVeiculo,
 			wCor,
 			wMarca,
 			wCombustivel,
-			wData,
 			wNacional;
 	LocalDate
 			wAnoModelo;
+	
+	public Integer getwIDVeiculo() {
+		return wIDVeiculo;
+	}
+
+	public void setwIDVeiculo(Integer wIDVeiculo) {
+		this.wIDVeiculo = wIDVeiculo;
+	}
 	
 	public LocalDate getwAnoModelo() {
 		return wAnoModelo;
@@ -21,14 +30,6 @@ public class MVeiculo {
 
 	public void setwAnoModelo(LocalDate wAnoModelo) {
 		this.wAnoModelo = wAnoModelo;
-	}
-
-	public String getwData() {
-		return wData;
-	}
-
-	public void setwData(String wData) {
-		this.wData = wData;
 	}
 
 	public String getwNacional() {

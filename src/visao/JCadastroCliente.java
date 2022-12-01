@@ -165,9 +165,9 @@ public class JCadastroCliente extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				Long   wCpf 	 = Long.valueOf(edCpf.getText());		
 				String wNome 	 = edNome.getText();
-				String wCpf 	 = edCpf.getText();
 				String wCnh 	 = edCnh.getText();
 				String wSexo 	 = cbSexo.getSelectedItem().toString();
 				String wEmail 	 = edGmail.getText();
@@ -186,10 +186,10 @@ public class JCadastroCliente extends JFrame {
 				
 				} else {
 					contValidacao ++;
-					Mc.setWNome(wNome);
+					Mc.setwNome(wNome);
 				}
 
-				if (wCpf == null || wCpf.isEmpty()) {
+				if (wCpf == null) {
 					JOptionPane.showMessageDialog(null, "Preencha o CPF");
 				} else {
 					contValidacao ++;
@@ -266,6 +266,18 @@ public class JCadastroCliente extends JFrame {
 		});
 		btLimpar.setBounds(393, 194, 102, 23);
 		contentPane.add(btLimpar);
+		
+		JButton btVoltar = new JButton("<");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JMenu m = new JMenu();
+				m.setLocationRelativeTo(null);
+				m.setVisible(true);
+				dispose();
+			}
+		});			
+		btVoltar.setBounds(22, -5, 46, 25);
+		contentPane.add(btVoltar);
 
 	}
 }

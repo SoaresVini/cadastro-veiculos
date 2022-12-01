@@ -26,15 +26,35 @@ public class CVeiculoControl {
 		return false;
 	}
 	//UPDATE
-	public Boolean alterar(MVeiculo v) {
+	public Boolean alterar(MVeiculo v, Integer wIDVeiculo) {
+		for(MVeiculo mv : TableVeiculos) {
+			if (mv.getwIDVeiculo() == wIDVeiculo) {
+				mv.setwIDVeiculo	(v.getwIDVeiculo());
+				mv.setwPlaca		(v.getwPlaca());
+				mv.setwTipoVeiculo	(v.getwTipoVeiculo());
+				mv.setwCor			(v.getwCor());
+				mv.setwMarca		(v.getwMarca());
+				mv.setwCombustivel	(v.getwCombustivel());
+				mv.setwNacional		(v.getwNacional());
+				mv.setwAnoModelo	(v.getwAnoModelo());
+				return true;
+			}
+		}
 		return false;
 	}
+
 	//DELETE
-	public Boolean deletar(MVeiculo v, int idVeiculo) {
+	public Boolean deletar(MVeiculo v, Integer wIDVeiculo) {
+		for (MVeiculo mv : TableVeiculos) {
+			if (mv.getwIDVeiculo() == wIDVeiculo) {
+				TableVeiculos.remove(mv);
+				return true;
+			}
+		}
 		return false;
 	}
 	//SELECT
 	public ArrayList<MVeiculo> listaCliente(){
-		return null;
+		return TableVeiculos; 
 	}	
 }

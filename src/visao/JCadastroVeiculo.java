@@ -36,6 +36,7 @@ public class JCadastroVeiculo extends JFrame {
 	private JTextField edMarca;
 	private JTextField cbDonoVeiculo;
 	private JTextField edFabricacao;
+	private JTextField edID;
 
 
 	public JCadastroVeiculo() {
@@ -53,31 +54,31 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbNome = new JLabel("Dono do Veiculo:");
 		lbNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbNome.setBounds(25, 43, 132, 15);
+		lbNome.setBounds(25, 69, 132, 15);
 		contentPane.add(lbNome);
 		
 		JLabel lblPlaca = new JLabel("Placa:");
 		lblPlaca.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPlaca.setBounds(77, 76, 80, 15);
+		lblPlaca.setBounds(77, 96, 80, 15);
 		contentPane.add(lblPlaca);
 		
 		JLabel lbTipoVeiculo = new JLabel("Tipo de Veiculo:");
 		lbTipoVeiculo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbTipoVeiculo.setBounds(25, 109, 132, 15);
+		lbTipoVeiculo.setBounds(25, 123, 132, 15);
 		contentPane.add(lbTipoVeiculo);
 		
 		JLabel lbCor = new JLabel("Cor:");
 		lbCor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCor.setBounds(118, 140, 39, 15);
+		lbCor.setBounds(118, 150, 39, 15);
 		contentPane.add(lbCor);
 		
 		JLabel lbMarca = new JLabel("Marca:");
 		lbMarca.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbMarca.setBounds(104, 171, 53, 15);
+		lbMarca.setBounds(104, 177, 53, 15);
 		contentPane.add(lbMarca);
 		
 		JComboBox<String> cbTipoVeiculo = new JComboBox();
-		cbTipoVeiculo.setBounds(202, 103, 114, 23);
+		cbTipoVeiculo.setBounds(202, 119, 114, 23);
 		cbTipoVeiculo.addItem("");
 		cbTipoVeiculo.addItem("Carro");
 		cbTipoVeiculo.addItem("Moto");
@@ -86,22 +87,22 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JCheckBox ckFabicacao = new JCheckBox("Fabricação Nacional");
 		ckFabicacao.setFont(new Font("FreeSans", Font.BOLD, 10));
-		ckFabicacao.setBounds(198, 259, 133, 23);
+		ckFabicacao.setBounds(202, 268, 133, 23);
 		contentPane.add(ckFabicacao);
 		
 		edPlaca = new JTextField();
 		edPlaca.setColumns(10);
-		edPlaca.setBounds(202, 72, 114, 19);
+		edPlaca.setBounds(202, 94, 114, 19);
 		contentPane.add(edPlaca);
 		
 		edCor = new JTextField();
 		edCor.setColumns(10);
-		edCor.setBounds(202, 136, 114, 19);
+		edCor.setBounds(202, 148, 114, 19);
 		contentPane.add(edCor);
 		
 		edMarca = new JTextField();
 		edMarca.setColumns(10);
-		edMarca.setBounds(202, 167, 114, 19);
+		edMarca.setBounds(202, 175, 114, 19);
 		contentPane.add(edMarca);
 		
 		edFabricacao = new JTextField();
@@ -111,12 +112,12 @@ public class JCadastroVeiculo extends JFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		edFabricacao.setBounds(202, 231, 114, 19);
+		edFabricacao.setBounds(202, 241, 114, 19);
 		contentPane.add(edFabricacao);
 		edFabricacao.setColumns(10);
 		
 		JComboBox<String> cbCombustivel= new JComboBox();
-		cbCombustivel.setBounds(202, 198, 114, 23);
+		cbCombustivel.setBounds(202, 206, 114, 23);
 		cbCombustivel.addItem("");
 		cbCombustivel.addItem("Gasolina");
 		cbCombustivel.addItem("Etanol");
@@ -126,12 +127,12 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbCombustivel = new JLabel("Tipo de Combustivel:");
 		lbCombustivel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCombustivel.setBounds(0, 204, 157, 15);
+		lbCombustivel.setBounds(0, 210, 157, 15);
 		contentPane.add(lbCombustivel);
 		
 		JLabel lbAnoFabricacao = new JLabel("Ano de Frabricação:");
 		lbAnoFabricacao.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbAnoFabricacao.setBounds(12, 237, 145, 15);
+		lbAnoFabricacao.setBounds(12, 243, 145, 15);
 		contentPane.add(lbAnoFabricacao);
 		
 		JButton btFechar = new JButton("Fechar");
@@ -262,9 +263,31 @@ public class JCadastroVeiculo extends JFrame {
 		contentPane.add(lbImg);
 		
 		cbDonoVeiculo = new JTextField();
-		cbDonoVeiculo.setBounds(202, 41, 114, 19);
+		cbDonoVeiculo.setBounds(202, 65, 114, 19);
 		contentPane.add(cbDonoVeiculo);
 		cbDonoVeiculo.setColumns(10);
+		
+		JButton btvoltar = new JButton("<");
+		btvoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JMenu m = new JMenu();
+				m.setLocationRelativeTo(null);
+				m.setVisible(true);
+				dispose();
+			}
+		});		
+		btvoltar.setBounds(12, -5, 44, 25);
+		contentPane.add(btvoltar);
+		
+		JLabel lbID = new JLabel("ID do Veiculo:");
+		lbID.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbID.setBounds(25, 26, 132, 15);
+		contentPane.add(lbID);
+		
+		edID = new JTextField();
+		edID.setColumns(10);
+		edID.setBounds(202, 27, 114, 19);
+		contentPane.add(edID);
 
 	}
 }

@@ -3,9 +3,10 @@ package modelo;
 import java.time.LocalDate;
 
 public class MCliente {	
-
+	Long
+			wCpf;
+	
 	String  
-			wCpf,
 			wCarteiraMotorista,
 			wSexo,
 			wNome,
@@ -15,19 +16,21 @@ public class MCliente {
 	LocalDate 
 			wDataNascimento;
 
-	public String getwCpf() {
+
+
+	public Long getwCpf() {
 		return wCpf;
 	}
 
-	public void setwCpf(String wCpf) {
+	public void setwCpf(Long wCpf) {
 		this.wCpf = wCpf;
 	}
 
-	public String getWNome() {
+	public String getwNome() {
 		return wNome;
 	}
 
-	public void setWNome(String wNome) {
+	public void setwNome(String wNome) {
 		this.wNome = wNome;
 	}
 

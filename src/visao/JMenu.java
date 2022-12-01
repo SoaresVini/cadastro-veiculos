@@ -55,33 +55,25 @@ public class JMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btCadastrarCliente = new JButton("Cadastrar Cliente");
-	    btCadastrarCliente.addActionListener(new ActionListener() {
-			
+		btCadastrarCliente.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new JCadastroCliente().setVisible(true);
-				
+				JCadastroCliente jcc = new JCadastroCliente();
+				jcc.setLocationRelativeTo(null);
+				jcc.setVisible(true);
+				dispose();
 			}
 		});
 		btCadastrarCliente.setBounds(352, 35, 180, 25);
 		contentPane.add(btCadastrarCliente);
 		
-		JButton btConsulta = new JButton("Consulta");
-		btConsulta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new JConsulta().setVisible(true);
-				
-			}
-		});
-		btConsulta.setBounds(352, 107, 180, 25);
-		contentPane.add(btConsulta);
-		
 		JButton btCadastrarVeiculo = new JButton("Cadastrar Veiculo");
 		btCadastrarVeiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JCadastroVeiculo().setVisible(true);
+				JCadastroVeiculo jcv = new JCadastroVeiculo();
+				jcv.setLocationRelativeTo(null);
+				jcv.setVisible(true);
+				dispose();
 			}
 		});
 		btCadastrarVeiculo.setBounds(352, 71, 180, 25);
@@ -93,7 +85,7 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btExit.setBounds(352, 143, 180, 25);
+		btExit.setBounds(352, 108, 180, 25);
 		contentPane.add(btExit);
 		
 		JLabel lbTitulo = new JLabel("Pessoas Cadastradas");
@@ -120,9 +112,9 @@ public class JMenu extends JFrame {
 		taPessoasCadastradas.setBounds(10, 35, 324, 109);
 		contentPane.add(taPessoasCadastradas);
 		
-		JList taVeiculosCadastrados_1 = new JList();
-		taVeiculosCadastrados_1.setBounds(10, 179, 324, 109);
-		contentPane.add(taVeiculosCadastrados_1);
+		JList taVeiculosCadastrados = new JList();
+		taVeiculosCadastrados.setBounds(10, 179, 324, 109);
+		contentPane.add(taVeiculosCadastrados);
 		
 	}
 }
