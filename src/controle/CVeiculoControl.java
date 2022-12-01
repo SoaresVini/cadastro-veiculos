@@ -54,7 +54,7 @@ public class CVeiculoControl {
 		return false;
 	}
 	//SELECT
-	public ArrayList<MVeiculo> listaCliente(){
+	public ArrayList<MVeiculo> listaVeiculos(){
 		return TableVeiculos; 
 	}	
 }

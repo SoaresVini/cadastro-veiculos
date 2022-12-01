@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.EventQueue;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -14,6 +15,9 @@ import javax.swing.event.ListSelectionListener;
 import controle.CClienteControl;
 import modelo.MCliente;
 
+import controle.CVeiculoControl;
+import modelo.MVeiculo;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,6 +27,10 @@ public class JMenu extends JFrame {
 
 	private JList<MCliente> listaCliente;
 	private MCliente DonoVeiculo = null;
+	
+	private JList<MVeiculo> listaVeiculo;
+	private MVeiculo Veiculo = null;
+	
 	private JPanel contentPane;
 	private boolean visible = false;
 	
@@ -96,23 +104,34 @@ public class JMenu extends JFrame {
 		lbTitulo2.setBounds(10, 154, 167, 14);
 		contentPane.add(lbTitulo2);
 		
-		CClienteControl cc = CClienteControl.getInstancia(); 
+//		CClienteControl cc = CClienteControl.getInstancia(); 
 		JList<MCliente> taPessoasCadastradas = new JList<>();
-		taPessoasCadastradas.setListData(new Vector<MCliente>(CClienteControl.getInstancia().listaCliente()));
-		taPessoasCadastradas.updateUI();
-		
-		listaCliente = new JList<MCliente>();
-		listaCliente.addListSelectionListener(new ListSelectionListener() {			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				DonoVeiculo = listaCliente.getSelectedValue();
-				if (DonoVeiculo != null) { System.out.println(DonoVeiculo); }
-			}
-		});
+//		taPessoasCadastradas.setListData(new Vector<MCliente>(CClienteControl.getInstancia().listaCliente()));
+//		taPessoasCadastradas.updateUI();
+//		listaCliente = new JList<MCliente>();
+//		listaCliente.addListSelectionListener(new ListSelectionListener() {			
+//			@Override
+//			public void valueChanged(ListSelectionEvent e) {
+//				DonoVeiculo = listaCliente.getSelectedValue();
+//				if (DonoVeiculo != null) { System.out.println(DonoVeiculo); }
+//			}
+//		});
 		taPessoasCadastradas.setBounds(10, 35, 324, 109);
 		contentPane.add(taPessoasCadastradas);
 		
-		JList taVeiculosCadastrados = new JList();
+		CVeiculoControl cv = CVeiculoControl.getInstacia();
+		JList<MVeiculo> taVeiculosCadastrados = new JList<>();
+		taVeiculosCadastrados.setListData(new Vector<MVeiculo>(CVeiculoControl.getInstacia().listaVeiculos()));
+		taVeiculosCadastrados.updateUI();
+		listaVeiculo = new JList<MVeiculo>();
+		listaVeiculo.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		taVeiculosCadastrados.setBounds(10, 179, 324, 109);
 		contentPane.add(taVeiculosCadastrados);
 		
