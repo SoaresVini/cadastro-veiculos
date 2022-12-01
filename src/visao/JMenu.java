@@ -128,10 +128,10 @@ public class JMenu extends JFrame {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+				Veiculo = listaVeiculo.getSelectedValue();
+				if (Veiculo != null) {System.out.println(Veiculo);}}
 		});
+		
 		taVeiculosCadastrados.setBounds(10, 179, 324, 109);
 		contentPane.add(taVeiculosCadastrados);
 		

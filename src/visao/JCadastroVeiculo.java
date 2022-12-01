@@ -148,6 +148,7 @@ public class JCadastroVeiculo extends JFrame {
 					
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Integer wID			= Integer.valueOf(edID.getText());	
 				String wPlaca 		= edPlaca.		getText();
 				String wCor 		= edCor.		getText();
 				String wMarca 		= edMarca.		getText();
@@ -160,6 +161,14 @@ public class JCadastroVeiculo extends JFrame {
 				Integer contValidacao = 0;
 				
 				MVeiculo Mv = new MVeiculo();
+				
+				// Dados do ID
+				if (wID == null) {
+					JOptionPane.showInternalMessageDialog(null, "Cadastre um ID");
+				} else {
+					Mv.setwIDVeiculo(wID);
+					contValidacao ++;
+				}
 				
 				// Dados da Placa 
 				if (wPlaca == null || wPlaca.isEmpty()) {
@@ -220,10 +229,9 @@ public class JCadastroVeiculo extends JFrame {
 				CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
 				Boolean insert = TableVeiculo.inserir(Mv);
 				
-				if (contValidacao == 7) {
+				if (contValidacao == 8) {
 					contValidacao = 0;
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
-					dispose();
 				}
 			}
 		});
@@ -240,7 +248,7 @@ public class JCadastroVeiculo extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				edID		 .setText("");
 				cbCombustivel.setSelectedItem("");
 				cbDonoVeiculo.setText("");
 				cbTipoVeiculo.setSelectedItem("");
