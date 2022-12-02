@@ -137,6 +137,12 @@ public class JMenu extends JFrame {
 		}
 		comboBox.setBounds(352, 150, 125, 22);
 		contentPane.add(comboBox);
+		
+		// pega o selecioando no combobox
+		MCliente clienteSelecionado = (MCliente) comboBox.getSelectedItem();
+		
+		// cria uma tela passando o cliente selecionado
+		TelaDetalhamento telaDet = new TelaDetalhamento(clienteSelecionado);
 
 		table = new JTable();
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
@@ -156,40 +162,35 @@ public class JMenu extends JFrame {
 
 		btConsult.setBounds(352, 191, 180, 25);
 		contentPane.add(btConsult);
-		
+
 		JLabel lblPessoaConsultada = new JLabel("Pessoa Consultada");
 		lblPessoaConsultada.setBounds(10, 177, 180, 14);
 		contentPane.add(lblPessoaConsultada);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 195, 332, 62);
 		contentPane.add(scrollPane_1);
-		
+
 		////////////////////////////////////////////////////////////////
-		
+
 		table_1 = new JTable();
-		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome" });
+		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
 		MCliente Cliente = new MCliente();
+
+		modelo2.addRow(new Object[] { comboBox.getSelectedItem() });
+
 		
-			modelo2.addRow(new Object[] {comboBox.getSelectedItem() });
-		
-		table_1.setModel(modelo2);
-		
-		scrollPane_1.setViewportView(table_1);
-		
-	
+
 	}
 
 	protected void atualizarJTable() {
-		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome"});
+		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
 
 		MCliente Cliente = new MCliente();
-		
-		modelo2.addRow(new Object[] {comboBox.getSelectedItem() , Cliente.getwCpf() });
-	
-	    table_1.setModel(modelo2);
-	
 
-		}
+		modelo2.addRow(new Object[] { comboBox.getSelectedItem(), Cliente.getwCpf() });
+
+		table_1.setModel(modelo2);
+
 	}
-
+}
