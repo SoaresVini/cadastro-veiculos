@@ -2,21 +2,10 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class MCliente {	
+public class MCliente {
 
-	
-	String  
-			wCpf,
-			wCarteiraMotorista,
-			wSexo,
-			wNome,
-			wNumeroTelefone,
-			wGmail;
-
-	LocalDate 
-			wDataNascimento;
-
-
+	String wCpf, wCarteiraMotorista, wSexo, wNome, wNumeroTelefone, wGmail;
+	LocalDate wDataNascimento;
 
 	public String getwCpf() {
 		return wCpf;
@@ -73,5 +62,9 @@ public class MCliente {
 	public void setwDataNascimento(LocalDate wDataNascimento) {
 		this.wDataNascimento = wDataNascimento;
 	}
-}
 
+	@Override
+	public String toString() {
+		return this.wNome;
+	}
+}
