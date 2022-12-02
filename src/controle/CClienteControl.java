@@ -32,7 +32,7 @@ public class CClienteControl {
 	//UPDATE
 	public Boolean alterar(MCliente c, Long cpfCliente) {
 		for(MCliente mc : TableClientes) {
-			if (mc.getwCpf() == cpfCliente) {
+			if (mc.getwCpf().equals(cpfCliente) ) {
 				mc.setwCpf				(c.getwCpf());
 				mc.setwCarteiraMotorista(c.getwCarteiraMotorista());
 				mc.setwSexo				(c.getwSexo());
@@ -50,7 +50,7 @@ public class CClienteControl {
 	//DELETE
 	public Boolean deletar(MCliente c, Long cpfCliente) {
 		for (MCliente mc : TableClientes) {
-			if (mc.getwCpf() == cpfCliente) {
+			if (mc.getwCpf().equals(cpfCliente) ){
 				TableClientes.remove(mc);
 				return true;
 			}
