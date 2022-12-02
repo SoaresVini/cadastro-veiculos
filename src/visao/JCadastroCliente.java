@@ -166,7 +166,7 @@ public class JCadastroCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Long   wCpf 	 = Long.valueOf(edCpf.getText());		
+				String  wCpf 	 = edCpf.getText();
 				String wNome 	 = edNome.getText();
 				String wCnh 	 = edCnh.getText();
 				String wSexo 	 = cbSexo.getSelectedItem().toString();
@@ -240,7 +240,7 @@ public class JCadastroCliente extends JFrame {
 				
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
 					contValidacao = 0;
-					dispose();
+			
 				}
 
 			}

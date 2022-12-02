@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import controle.CClienteControl;
 import modelo.MCliente;
@@ -21,11 +23,14 @@ import modelo.MVeiculo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
 
 
 public class JMenu extends JFrame {
 
-	private JList<MCliente> listaCliente;
+	private ArrayList<MCliente> taMClientes;
 	private MCliente DonoVeiculo = null;
 	
 	private JList<MVeiculo> listaVeiculo;
@@ -33,7 +38,8 @@ public class JMenu extends JFrame {
 	
 	private JPanel contentPane;
 	private boolean visible = false;
-	
+	private JTable table;
+	private String nomeSelec;
 	/**
 	 * Launch the application.
 	 */
@@ -104,23 +110,9 @@ public class JMenu extends JFrame {
 		lbTitulo2.setBounds(10, 154, 167, 14);
 		contentPane.add(lbTitulo2);
 		
-//		CClienteControl cc = CClienteControl.getInstancia(); 
-		JList<MCliente> taPessoasCadastradas = new JList<>();
-//		taPessoasCadastradas.setListData(new Vector<MCliente>(CClienteControl.getInstancia().listaCliente()));
-//		taPessoasCadastradas.updateUI();
-//		listaCliente = new JList<MCliente>();
-//		listaCliente.addListSelectionListener(new ListSelectionListener() {			
-//			@Override
-//			public void valueChanged(ListSelectionEvent e) {
-//				DonoVeiculo = listaCliente.getSelectedValue();
-//				if (DonoVeiculo != null) { System.out.println(DonoVeiculo); }
-//			}
-//		});
-		taPessoasCadastradas.setBounds(10, 35, 324, 109);
-		contentPane.add(taPessoasCadastradas);
-		
 		CVeiculoControl cv = CVeiculoControl.getInstacia();
 		JList<MVeiculo> taVeiculosCadastrados = new JList<>();
+		
 		taVeiculosCadastrados.setListData(new Vector<MVeiculo>(CVeiculoControl.getInstacia().listaVeiculos()));
 		taVeiculosCadastrados.updateUI();
 		listaVeiculo = new JList<MVeiculo>();
@@ -134,6 +126,38 @@ public class JMenu extends JFrame {
 		
 		taVeiculosCadastrados.setBounds(10, 179, 324, 109);
 		contentPane.add(taVeiculosCadastrados);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 24, 314, 119);
+		contentPane.add(scrollPane);
+		
+		CClienteControl cC = CClienteControl.getInstancia();
+		ArrayList<MCliente> listaClientes = cC.listaCliente();
+		
+		JComboBox comboBox = new JComboBox();
+		if ( listaClientes.size() > 0 &&listaClientes != null) {
+			for (MCliente cCliente : listaClientes) {
+				comboBox.addItem((cCliente.getwNome()));
+			}
+		}
+		comboBox.setBounds(362, 144, 67, 22);
+		contentPane.add(comboBox);
+		
+		MCliente Cliente = new MCliente();
+		table = new JTable();
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF", "CNH"});
+		table.setModel(modelo);
+		
+	
+				 (comboBox.getSelectedItem());
+				Cliente.setwNome(); 
+				modelo.addRow(new Object[] { Cliente.getwNome(), Cliente.getwCpf(),Cliente.getwCarteiraMotorista() });
+			
+		
+		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table);
+		
+
 		
 	}
 }
