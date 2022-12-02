@@ -166,7 +166,7 @@ public class JCadastroCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String  wCpf 	 = edCpf.getText();
+				String wCpf 	 = edCpf.getText();
 				String wNome 	 = edNome.getText();
 				String wCnh 	 = edCnh.getText();
 				String wSexo 	 = cbSexo.getSelectedItem().toString();
