@@ -1,6 +1,6 @@
 package visao;
 
-import java.awt.EventQueue; 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class JCadastroCliente extends JFrame {
 
@@ -35,12 +36,11 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
-	
+
 	JMenu menu = new JMenu();
 
 	public JCadastroCliente() {
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 537, 350);
 		contentPane = new JPanel();
@@ -50,6 +50,7 @@ public class JCadastroCliente extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lbTitulo = new JLabel("Cadastro Cliente");
+		lbTitulo.setFont(new Font("DejaVu Serif", Font.BOLD, 12));
 		lbTitulo.setBounds(174, 0, 158, 14);
 		lbTitulo.setVerticalAlignment(SwingConstants.TOP);
 		contentPane.add(lbTitulo);
@@ -157,7 +158,7 @@ public class JCadastroCliente extends JFrame {
 
 			}
 		});
-		btnFechar.setBounds(393, 227, 102, 23);
+		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
 
 		JButton btGravar = new JButton("Gravar");
@@ -165,87 +166,83 @@ public class JCadastroCliente extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				String wCpf 	 = edCpf.getText();
-				String wNome 	 = edNome.getText();
-				String wCnh 	 = edCnh.getText();
-				String wSexo 	 = cbSexo.getSelectedItem().toString();
-				String wEmail 	 = edGmail.getText();
+
+				String wCpf      = edCpf.getText();
+				String wNome     = edNome.getText();
+				String wCnh      = edCnh.getText();
+				String wSexo     = cbSexo.getSelectedItem().toString();
+				String wEmail    = edGmail.getText();
 				String wTelefone = edTelefone.getText();
 				String wDataTest = edData.getText();
 				LocalDate wData  = LocalDate.parse(edData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-				
+
 				Integer contValidacao = 0;
-	
+
 				MCliente Mc = new MCliente();
-				
-				
 
 				if (wNome == null || wNome.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o nome do Cliente");
-				
+
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwNome(wNome);
 				}
 
 				if (wCpf == null) {
 					JOptionPane.showMessageDialog(null, "Preencha o CPF");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwCpf(wCpf);
 				}
 
 				if (wCnh == null || wCnh.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o CNH");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwCarteiraMotorista(wCnh);
 				}
-				
+
 				if (wEmail == null || wEmail.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o Email");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwGmail(wEmail);
 				}
-				
+
 				if (wTelefone == null || wTelefone.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preecha o Telefone");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwNumeroTelefone(wTelefone);
 				}
-				
+
 				if (wSexo == null || wSexo.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o Sexo");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwSexo(wSexo);
 				}
-				
-				
+
 				if (wDataTest == null || wDataTest.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha a Data");
 				} else {
-					contValidacao ++;
+					contValidacao++;
 					Mc.setwDataNascimento(wData);
 				}
-				
 
 				CClienteControl TableCliente = CClienteControl.getInstancia();
 				Boolean insert = TableCliente.inserir(Mc);
 
 				if (contValidacao == 7) {
-				
+
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
 					contValidacao = 0;
-			
+
 				}
 
 			}
 		});
-		btGravar.setBounds(393, 159, 102, 23);
+		btGravar.setBounds(390, 193, 102, 23);
 		contentPane.add(btGravar);
 
 		JButton btLimpar = new JButton("Limpar");
@@ -254,19 +251,19 @@ public class JCadastroCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				cbSexo.	   setSelectedItem("");
-				edCpf. 	   setText("");
-				edNome.	   setText("");
-				edCnh. 	   setText("");
-				edData.	   setText("");
-				edGmail.   setText("");
+				cbSexo.setSelectedItem("");
+				edCpf.setText("");
+				edNome.setText("");
+				edCnh.setText("");
+				edData.setText("");
+				edGmail.setText("");
 				edTelefone.setText("");
 
 			}
 		});
-		btLimpar.setBounds(393, 194, 102, 23);
+		btLimpar.setBounds(390, 228, 102, 23);
 		contentPane.add(btLimpar);
-		
+
 		JButton btVoltar = new JButton("<");
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -275,9 +272,13 @@ public class JCadastroCliente extends JFrame {
 				m.setVisible(true);
 				dispose();
 			}
-		});			
+		});
 		btVoltar.setBounds(22, -5, 46, 25);
 		contentPane.add(btVoltar);
+		
+		JButton btConsultar = new JButton("Consultar");
+		btConsultar.setBounds(381, 161, 120, 23);
+		contentPane.add(btConsultar);
 
 	}
 }

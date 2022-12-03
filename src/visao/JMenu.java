@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -37,10 +38,11 @@ public class JMenu extends JFrame {
 
 	private JPanel contentPane;
 	private boolean visible = false;
-	private JTable table;
+	private JTable tbCliente;
 	private String cpf;
-	private JComboBox<MCliente> comboBox;
+	// private JComboBox<MCliente> comboBox;
 	private JTable table_1;
+	private JTable tbVeiculo;
 
 	/**
 	 * Launch the application.
@@ -63,16 +65,16 @@ public class JMenu extends JFrame {
 	 */
 	public JMenu() {
 
-		comboBox = new JComboBox<>();
+		// comboBox = new JComboBox<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 559, 363);
+		setBounds(100, 100, 931, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btCadastrarCliente = new JButton("Cadastrar Cliente");
+		JButton btCadastrarCliente = new JButton("Clientes");
 		btCadastrarCliente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -82,10 +84,10 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btCadastrarCliente.setBounds(352, 35, 180, 25);
+		btCadastrarCliente.setBounds(38, 12, 180, 25);
 		contentPane.add(btCadastrarCliente);
 
-		JButton btCadastrarVeiculo = new JButton("Cadastrar Veiculo");
+		JButton btCadastrarVeiculo = new JButton("Veiculos");
 		btCadastrarVeiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JCadastroVeiculo jcv = new JCadastroVeiculo();
@@ -94,7 +96,7 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btCadastrarVeiculo.setBounds(352, 71, 180, 25);
+		btCadastrarVeiculo.setBounds(359, 12, 180, 25);
 		contentPane.add(btCadastrarVeiculo);
 
 		JButton btExit = new JButton("Exit");
@@ -103,94 +105,66 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btExit.setBounds(352, 108, 180, 25);
+		btExit.setBounds(712, 12, 180, 25);
 		contentPane.add(btExit);
 
 		JLabel lbTitulo = new JLabel("Pessoas Cadastradas");
-		lbTitulo.setBounds(10, 11, 180, 14);
+		lbTitulo.setBounds(12, 66, 180, 14);
 		contentPane.add(lbTitulo);
 
-		CVeiculoControl cv = CVeiculoControl.getInstacia();
-		listaVeiculo = new JList<MVeiculo>();
-		listaVeiculo.addListSelectionListener(new ListSelectionListener() {
-
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				Veiculo = listaVeiculo.getSelectedValue();
-				if (Veiculo != null) {
-					System.out.println(Veiculo);
-				}
-			}
-		});
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 24, 314, 119);
-		contentPane.add(scrollPane);
+		JScrollPane spCliente = new JScrollPane();
+		spCliente.setBounds(12, 94, 904, 119);
+		contentPane.add(spCliente);
 
 		CClienteControl cC = CClienteControl.getInstancia();
 		ArrayList<MCliente> listaClientes = cC.listaCliente();
-
-		if (listaClientes.size() > 0 && listaClientes != null) {
-			for (MCliente cCliente : listaClientes) {
-				comboBox.addItem((cCliente));
-			}
+		tbCliente = new JTable();
+		DefaultTableModel modeloCliente = new DefaultTableModel(new Object[][] {},
+				new String[] { "Nome", "CPF", "Data Nasc.", "CNH", "Sexo", "Telefone", "Gmail" });
+		for (MCliente Cliente : listaClientes) {
+			modeloCliente.addRow(new Object[] { Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
+				    Cliente.getwCarteiraMotorista(), Cliente.getwSexo(), Cliente.getwNumeroTelefone(),
+					Cliente.getwGmail() });
 		}
-		comboBox.setBounds(352, 150, 125, 22);
-		contentPane.add(comboBox);
-		
-		// pega o selecioando no combobox
-		MCliente clienteSelecionado = (MCliente) comboBox.getSelectedItem();
-		
-		// cria uma tela passando o cliente selecionado
-		TelaDetalhamento telaDet = new TelaDetalhamento(clienteSelecionado);
+		tbCliente.setModel(modeloCliente);
+		spCliente.setViewportView(tbCliente);
 
-		table = new JTable();
-		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
-		for (MCliente mCliente : listaClientes) {
-			modelo.addRow(new Object[] { mCliente.getwNome(), mCliente.getwCpf() });
-		}
-		table.setModel(modelo);
+		JScrollPane spVeiculo = new JScrollPane();
+		spVeiculo.setBounds(12, 258, 904, 119);
+		contentPane.add(spVeiculo);
 
-		scrollPane.setViewportView(table);
+		CVeiculoControl cV = CVeiculoControl.getInstacia();
+		ArrayList<MVeiculo> listaVeiculo = cV.listaVeiculos();
 
-		JButton btConsult = new JButton("Consultar");
-		btConsult.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				atualizarJTable();
-			}
-		});
+		tbVeiculo = new JTable();
+		DefaultTableModel modeloVeiculo = new DefaultTableModel(new Object[][] {}, new String[] { "IDVeiculo",
+				"Tipo Veiculo", "Marca", "Placa", "Ano Modelo", "Combustivel", "Cor", "Nacional" });
+		for (MVeiculo Veiculo : listaVeiculo) {
+			modeloVeiculo.addRow(new Object[] { Veiculo.getwIDVeiculo(), Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(),
+					Veiculo.getwPlaca(), Veiculo.getwAnoModelo(), Veiculo.getwCombustivel(), 
+					Veiculo.getwCor(), Veiculo.getwNacional()});
+		};
+		tbVeiculo.setModel(modeloVeiculo);
+		spVeiculo.setViewportView(tbVeiculo);
 
-		btConsult.setBounds(352, 191, 180, 25);
-		contentPane.add(btConsult);
-
-		JLabel lblPessoaConsultada = new JLabel("Pessoa Consultada");
-		lblPessoaConsultada.setBounds(10, 177, 180, 14);
+		JLabel lblPessoaConsultada = new JLabel("Veiculos Cadastrados");
+		lblPessoaConsultada.setBounds(12, 232, 180, 14);
 		contentPane.add(lblPessoaConsultada);
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 195, 332, 62);
-		contentPane.add(scrollPane_1);
-
-		////////////////////////////////////////////////////////////////
-
-		table_1 = new JTable();
-		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
-		MCliente Cliente = new MCliente();
-
-		modelo2.addRow(new Object[] { comboBox.getSelectedItem() });
-
-		
 
 	}
 
-	protected void atualizarJTable() {
-		DefaultTableModel modelo2 = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "CPF" });
+	protected void atualizarTableCliente() {
+		CClienteControl cC = CClienteControl.getInstancia();
+		ArrayList<MCliente> listaClientes = cC.listaCliente();
+		DefaultTableModel modeloCliente = new DefaultTableModel(new Object[][] {},
+				new String[] { "Nome", "CPF", "Data Nasc.", "CNH", "Sexo", "Telefone", "Gmail" });
+		for (MCliente Cliente : listaClientes) {
+			modeloCliente.addRow(new Object[] { Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
+					Cliente.getwCarteiraMotorista(), Cliente.getwSexo(), Cliente.getwNumeroTelefone(),
+					Cliente.getwGmail() });
+		}
 
-		MCliente Cliente = new MCliente();
-
-		modelo2.addRow(new Object[] { comboBox.getSelectedItem(), Cliente.getwCpf() });
-
-		table_1.setModel(modelo2);
+		tbCliente.setModel(modeloCliente);
 
 	}
 }
