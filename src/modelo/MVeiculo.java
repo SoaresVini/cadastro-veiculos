@@ -12,10 +12,19 @@ public class MVeiculo {
 			wCor,
 			wMarca,
 			wCombustivel,
-			wNacional;
+			wNacional,
+			wDonoVeiculo;
 	LocalDate
 			wAnoModelo;
 	
+	
+	public String getwDonoVeiculo() {
+		return wDonoVeiculo;
+	}
+
+	public void setwDonoVeiculo(String wDonoVeiculo) {
+		this.wDonoVeiculo= wDonoVeiculo;
+	}
 	public Integer getwIDVeiculo() {
 		return wIDVeiculo;
 	}

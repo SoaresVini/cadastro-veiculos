@@ -4,8 +4,16 @@ import java.time.LocalDate;
 
 public class MCliente {
 
-	String wCpf, wCarteiraMotorista, wSexo, wNome, wNumeroTelefone, wGmail;
-	LocalDate wDataNascimento;
+	String 
+		wCpf,
+		wCarteiraMotorista, 
+		wSexo, 
+		wNome, 
+		wNumeroTelefone, 
+		wGmail;
+	
+	LocalDate 
+		wDataNascimento;
 
 	public String getwCpf() {
 		return wCpf;

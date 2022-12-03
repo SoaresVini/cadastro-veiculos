@@ -49,6 +49,7 @@ public class JCadastroCliente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// Labels
 		JLabel lbTitulo = new JLabel("Cadastro Cliente");
 		lbTitulo.setFont(new Font("DejaVu Serif", Font.BOLD, 12));
 		lbTitulo.setBounds(174, 0, 158, 14);
@@ -57,32 +58,32 @@ public class JCadastroCliente extends JFrame {
 
 		JLabel lbCpf = new JLabel("CPF :  ");
 		lbCpf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCpf.setBounds(55, 130, 46, 14);
+		lbCpf.setBounds(88, 137, 46, 14);
 		contentPane.add(lbCpf);
 
 		JLabel lbNome = new JLabel("Nome : ");
 		lbNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbNome.setBounds(46, 52, 55, 14);
+		lbNome.setBounds(79, 59, 55, 14);
 		contentPane.add(lbNome);
 
 		JLabel lbCnh = new JLabel("CNH :  ");
 		lbCnh.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCnh.setBounds(55, 165, 46, 14);
+		lbCnh.setBounds(88, 172, 46, 14);
 		contentPane.add(lbCnh);
 
 		JLabel lbTelefone = new JLabel("Telefone :  ");
 		lbTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbTelefone.setBounds(12, 201, 89, 14);
+		lbTelefone.setBounds(45, 208, 89, 14);
 		contentPane.add(lbTelefone);
 
 		JLabel lbGmail = new JLabel("Gmail :  ");
 		lbGmail.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbGmail.setBounds(22, 236, 79, 14);
+		lbGmail.setBounds(55, 243, 79, 14);
 		contentPane.add(lbGmail);
 
-		JLabel lbData = new JLabel("Data :  ");
+		JLabel lbData = new JLabel("Dta. Nascimento: ");
 		lbData.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbData.setBounds(12, 89, 89, 14);
+		lbData.setBounds(-47, 92, 181, 14);
 		contentPane.add(lbData);
 
 		JLabel lbImg = new JLabel("New label");
@@ -90,12 +91,21 @@ public class JCadastroCliente extends JFrame {
 		lbImg.setBounds(393, 24, 102, 105);
 		contentPane.add(lbImg);
 
-		JLabel lbSexo = new JLabel("Sexo :   ");
-		lbSexo.setBounds(50, 277, 62, 18);
+		JLabel lbSexo = new JLabel("Sexo :");
+		lbSexo.setBounds(88, 284, 46, 18);
 		contentPane.add(lbSexo);
 
+		//ComboBox
+		JComboBox<String> cbSexo = new JComboBox();
+		cbSexo.setBounds(147, 282, 148, 22);
+		cbSexo.addItem("");
+		cbSexo.addItem("Masculino");
+		cbSexo.addItem("Feminino");
+		contentPane.add(cbSexo);
+
+		// TextFiel
 		edNome = new JTextField();
-		edNome.setBounds(126, 49, 222, 20);
+		edNome.setBounds(147, 56, 222, 20);
 		contentPane.add(edNome);
 		edNome.setColumns(10);
 
@@ -106,7 +116,7 @@ public class JCadastroCliente extends JFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		edCnh.setBounds(126, 162, 220, 20);
+		edCnh.setBounds(147, 169, 220, 20);
 		contentPane.add(edCnh);
 
 		edCpf = new JTextField();
@@ -116,7 +126,7 @@ public class JCadastroCliente extends JFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		edCpf.setBounds(126, 127, 222, 20);
+		edCpf.setBounds(147, 134, 222, 20);
 		contentPane.add(edCpf);
 
 		edTelefone = new JTextField();
@@ -126,12 +136,12 @@ public class JCadastroCliente extends JFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		edTelefone.setBounds(126, 198, 148, 20);
+		edTelefone.setBounds(147, 205, 148, 20);
 		contentPane.add(edTelefone);
 
 		edGmail = new JTextField();
 		edGmail.setColumns(10);
-		edGmail.setBounds(126, 233, 222, 20);
+		edGmail.setBounds(147, 240, 222, 20);
 		contentPane.add(edGmail);
 
 		edData = new JTextField();
@@ -141,15 +151,8 @@ public class JCadastroCliente extends JFrame {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		edData.setBounds(126, 86, 148, 20);
+		edData.setBounds(147, 89, 148, 20);
 		contentPane.add(edData);
-
-		JComboBox<String> cbSexo = new JComboBox();
-		cbSexo.setBounds(126, 277, 148, 22);
-		cbSexo.addItem("");
-		cbSexo.addItem("Masculino");
-		cbSexo.addItem("Feminino");
-		contentPane.add(cbSexo);
 
 		JButton btnFechar = new JButton("Fechar");
 		btnFechar.addActionListener(new ActionListener() {
@@ -179,7 +182,8 @@ public class JCadastroCliente extends JFrame {
 				Integer contValidacao = 0;
 
 				MCliente Mc = new MCliente();
-
+				
+				// Dados nome do Cliente
 				if (wNome == null || wNome.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o nome do Cliente");
 
@@ -187,42 +191,50 @@ public class JCadastroCliente extends JFrame {
 					contValidacao++;
 					Mc.setwNome(wNome);
 				}
-
-				if (wCpf == null) {
+				// Dados do Cpf 
+				if (wCpf == null || wNome.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o CPF");
 				} else {
+					
+					/*
+					 * Transformar o Cpf de String para long 
+					wCpf.replaceAll("[^0-9]", "");
+					Long wCpftest = Long.valueOf(wCpf);
+					*/
+					
 					contValidacao++;
 					Mc.setwCpf(wCpf);
 				}
 
+				// Dados da Cnh 
 				if (wCnh == null || wCnh.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o CNH");
 				} else {
 					contValidacao++;
 					Mc.setwCarteiraMotorista(wCnh);
 				}
-
+				// Dados do Email
 				if (wEmail == null || wEmail.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o Email");
 				} else {
 					contValidacao++;
 					Mc.setwGmail(wEmail);
 				}
-
+				// Dados do telefone
 				if (wTelefone == null || wTelefone.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preecha o Telefone");
 				} else {
 					contValidacao++;
 					Mc.setwNumeroTelefone(wTelefone);
 				}
-
+				// Dados do Sexo
 				if (wSexo == null || wSexo.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o Sexo");
 				} else {
 					contValidacao++;
 					Mc.setwSexo(wSexo);
 				}
-
+				// Dados da Data
 				if (wDataTest == null || wDataTest.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha a Data");
 				} else {
@@ -233,10 +245,16 @@ public class JCadastroCliente extends JFrame {
 				CClienteControl TableCliente = CClienteControl.getInstancia();
 				Boolean insert = TableCliente.inserir(Mc);
 
+				// laço confirmação dos Dados
+				
 				if (contValidacao == 7) {
 
 					JOptionPane.showMessageDialog(null, "Dados confirmados");
 					contValidacao = 0;
+					JMenu m = new JMenu();
+					m.setLocationRelativeTo(null);
+					m.setVisible(true);
+					dispose();
 
 				}
 

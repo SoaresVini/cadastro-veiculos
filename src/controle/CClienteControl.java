@@ -13,6 +13,7 @@ public class CClienteControl {
 	
 	private static CClienteControl instancia;
 	
+	// Instanciar Cliente
 	public static CClienteControl getInstancia() {
 		if (instancia == null) {
 			instancia = new CClienteControl ();

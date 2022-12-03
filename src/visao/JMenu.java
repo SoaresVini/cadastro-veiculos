@@ -27,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.ListSelectionModel;
 
 public class JMenu extends JFrame {
 
@@ -119,6 +120,7 @@ public class JMenu extends JFrame {
 		CClienteControl cC = CClienteControl.getInstancia();
 		ArrayList<MCliente> listaClientes = cC.listaCliente();
 		tbCliente = new JTable();
+		tbCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		DefaultTableModel modeloCliente = new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "CPF", "Data Nasc.", "CNH", "Sexo", "Telefone", "Gmail" });
 		for (MCliente Cliente : listaClientes) {
@@ -137,10 +139,11 @@ public class JMenu extends JFrame {
 		ArrayList<MVeiculo> listaVeiculo = cV.listaVeiculos();
 
 		tbVeiculo = new JTable();
-		DefaultTableModel modeloVeiculo = new DefaultTableModel(new Object[][] {}, new String[] { "IDVeiculo",
+		tbVeiculo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		DefaultTableModel modeloVeiculo = new DefaultTableModel(new Object[][] {}, new String[] { "IDVeiculo","Dono Veiculo",
 				"Tipo Veiculo", "Marca", "Placa", "Ano Modelo", "Combustivel", "Cor", "Nacional" });
 		for (MVeiculo Veiculo : listaVeiculo) {
-			modeloVeiculo.addRow(new Object[] { Veiculo.getwIDVeiculo(), Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(),
+			modeloVeiculo.addRow(new Object[] { Veiculo.getwIDVeiculo(),Veiculo.getwDonoVeiculo(),Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(),
 					Veiculo.getwPlaca(), Veiculo.getwAnoModelo(), Veiculo.getwCombustivel(), 
 					Veiculo.getwCor(), Veiculo.getwNacional()});
 		};

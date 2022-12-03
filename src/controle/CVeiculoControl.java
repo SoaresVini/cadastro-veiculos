@@ -10,6 +10,7 @@ public class CVeiculoControl {
 	
 	private static CVeiculoControl instancia;
 	
+	// Instanciar veiculo
 	public static CVeiculoControl getInstacia() {
 		if (instancia == null) {
 			instancia = new CVeiculoControl();
