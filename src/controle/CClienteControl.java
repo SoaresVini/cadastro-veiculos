@@ -31,7 +31,7 @@ public class CClienteControl {
 		return false;
 	}
 	//UPDATE
-	public Boolean alterar(MCliente c, Long cpfCliente) {
+	public Boolean alterar(MCliente c, String cpfCliente) {
 		for(MCliente mc : TableClientes) {
 			if (mc.getwCpf().equals(cpfCliente) ) {
 				mc.setwCpf				(c.getwCpf());
@@ -49,7 +49,7 @@ public class CClienteControl {
 
 	
 	//DELETE
-	public Boolean deletar(MCliente c, Long cpfCliente) {
+	public Boolean deletar(MCliente c, String cpfCliente) {
 		for (MCliente mc : TableClientes) {
 			if (mc.getwCpf().equals(cpfCliente) ){
 				TableClientes.remove(mc);

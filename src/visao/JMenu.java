@@ -31,18 +31,9 @@ import javax.swing.ListSelectionModel;
 
 public class JMenu extends JFrame {
 
-	private ArrayList<MCliente> taMClientes;
-	private MCliente DonoVeiculo = null;
-
-	private JList<MVeiculo> listaVeiculo;
-	private MVeiculo Veiculo = null;
-
 	private JPanel contentPane;
-	private boolean visible = false;
 	private JTable tbCliente;
-	private String cpf;
 	// private JComboBox<MCliente> comboBox;
-	private JTable table_1;
 	private JTable tbVeiculo;
 
 	/**

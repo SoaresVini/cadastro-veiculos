@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -36,6 +37,8 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
+	private ArrayList<MCliente> Cliente;
+	
 
 	JMenu menu = new JMenu();
 
@@ -164,12 +167,83 @@ public class JCadastroCliente extends JFrame {
 		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
 
+		
+		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.addActionListener(new ActionListener() {
-
-			@Override
+			
+			
 			public void actionPerformed(ActionEvent e) {
-
+				
+				
+		
+		
+			boolean  Encontrou = false;
+			CClienteControl cC = new CClienteControl();
+			ArrayList<MCliente> Clientes = cC.listaCliente();
+	     
+	        	for (MCliente mCliente : Clientes) {
+	        		if(edCpf.getText().equals(mCliente.getwCpf())){
+	        		 Encontrou = true;    
+	        	}
+	        }
+	        	
+		        if (Encontrou == true) {
+		            JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
+		            		                            + "ou alterar os Dados dele");
+		        
+		            for (MCliente mCliente : Clientes) {
+		            	if(edCpf.getText().equals(mCliente.getwCpf())){
+		            		
+		          
+		        			edNome.setText(mCliente.getwNome());
+		        			edCnh.setText(mCliente.getwCarteiraMotorista());
+		        			cbSexo.setSelectedItem(mCliente.getwSexo());
+		        			edGmail.setText(mCliente.getwGmail());
+		        			edTelefone.setText(mCliente.getwNumeroTelefone());
+		        			String wDate = String.valueOf(mCliente.getwDataNascimento());
+		        			edData.setText( wDate);
+		        				
+		    				
+		            	}
+		            	
+		            }
+		            
+		            
+    				
+        			/*
+        			
+        			Coloca o CPF em primeiro lugar e força de alguma forma 
+    				o usuario a consultar antes de preencher as outras info
+    				
+    				Se der para forçar a parada do Botão consultar, passa todo essa parte que 
+    				para esse botão e so deixa a parte q ja tava aqui 
+    			
+        			 
+        			Cria um botão alterar e bota coloca aqui para ele ser
+        			liberado quando entrar nesse laço
+        			
+        			bota toda a parte que ta no gravar mais que ta isso dentro do botão alterar e 
+        			adiciona aquele metodo do Jpanel para funcionar em algum lugar kkkkkkkkkkkkkkk
+        			
+        			
+        			MCliente Mc = new MCliente();
+        			
+        			CClienteControl TableCliente = CClienteControl.getInstancia();
+    				Boolean  update = TableCliente.alterar(Mc,wCpf );
+    				
+    				O deletar se pah que só criar o botão deletar e bota o metodo que ta la no controle 
+    				
+    				
+    				
+    				
+        			*/
+	        	
+	   
+		
+		        } else {
+		        	
+		       // parte que já tava aqui 
 				String wCpf      = edCpf.getText();
 				String wNome     = edNome.getText();
 				String wCnh      = edCnh.getText();
@@ -209,6 +283,7 @@ public class JCadastroCliente extends JFrame {
 				// Dados da Cnh 
 				if (wCnh == null || wCnh.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Preencha o CNH");
+					
 				} else {
 					contValidacao++;
 					Mc.setwCarteiraMotorista(wCnh);
@@ -257,7 +332,8 @@ public class JCadastroCliente extends JFrame {
 					dispose();
 
 				}
-
+				
+		        }
 			}
 		});
 		btGravar.setBounds(390, 193, 102, 23);
