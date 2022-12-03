@@ -85,7 +85,7 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btCadastrarCliente.setBounds(38, 12, 180, 25);
+		btCadastrarCliente.setBounds(12, 12, 180, 25);
 		contentPane.add(btCadastrarCliente);
 
 		JButton btCadastrarVeiculo = new JButton("Veiculos");
@@ -97,7 +97,7 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btCadastrarVeiculo.setBounds(359, 12, 180, 25);
+		btCadastrarVeiculo.setBounds(204, 12, 180, 25);
 		contentPane.add(btCadastrarVeiculo);
 
 		JButton btExit = new JButton("Exit");
@@ -106,7 +106,7 @@ public class JMenu extends JFrame {
 				dispose();
 			}
 		});
-		btExit.setBounds(712, 12, 180, 25);
+		btExit.setBounds(396, 12, 180, 25);
 		contentPane.add(btExit);
 
 		JLabel lbTitulo = new JLabel("Pessoas Cadastradas");
@@ -143,7 +143,8 @@ public class JMenu extends JFrame {
 		DefaultTableModel modeloVeiculo = new DefaultTableModel(new Object[][] {}, new String[] { "IDVeiculo","Dono Veiculo",
 				"Tipo Veiculo", "Marca", "Placa", "Ano Modelo", "Combustivel", "Cor", "Nacional" });
 		for (MVeiculo Veiculo : listaVeiculo) {
-			modeloVeiculo.addRow(new Object[] { Veiculo.getwIDVeiculo(),Veiculo.getwDonoVeiculo(),Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(),
+			modeloVeiculo.addRow(new Object[] { 
+					Veiculo.getwIDVeiculo(),Veiculo.getwDonoVeiculo(),Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(),
 					Veiculo.getwPlaca(), Veiculo.getwAnoModelo(), Veiculo.getwCombustivel(), 
 					Veiculo.getwCor(), Veiculo.getwNacional()});
 		};
@@ -162,7 +163,8 @@ public class JMenu extends JFrame {
 		DefaultTableModel modeloCliente = new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "CPF", "Data Nasc.", "CNH", "Sexo", "Telefone", "Gmail" });
 		for (MCliente Cliente : listaClientes) {
-			modeloCliente.addRow(new Object[] { Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
+			modeloCliente.addRow(new Object[] { 
+					Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
 					Cliente.getwCarteiraMotorista(), Cliente.getwSexo(), Cliente.getwNumeroTelefone(),
 					Cliente.getwGmail() });
 		}

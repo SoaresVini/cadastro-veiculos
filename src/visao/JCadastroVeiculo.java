@@ -16,6 +16,8 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -53,7 +55,7 @@ public class JCadastroVeiculo extends JFrame {
 		
 		// Labels
 		JLabel lbTitulo = new JLabel("Cadastro de Veiculo");
-		lbTitulo.setBounds(202, 0, 142, 15);
+		lbTitulo.setBounds(182, 0, 142, 15);
 		contentPane.add(lbTitulo);
 		
 		JLabel lbNome = new JLabel("Dono do Veiculo:");
@@ -98,7 +100,7 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbImg = new JLabel("New label");
 		lbImg.setIcon(new ImageIcon(JCadastroVeiculo.class.getResource("/visao/2277327-200_resized.png")));
-		lbImg.setBounds(369, 26, 102, 83);
+		lbImg.setBounds(378, 5, 102, 83);
 		contentPane.add(lbImg);
 		
 		// ComboBox e CheckBox
@@ -154,6 +156,11 @@ public class JCadastroVeiculo extends JFrame {
 		contentPane.add(edMarca);
 		
 		edID = new JTextField();
+		edID.addFocusListener(new FocusAdapter() {
+		    public void focusLost(FocusEvent e) {
+		    	//if ()
+		    }
+		});
 		edID.setColumns(10);
 		edID.setBounds(202, 27, 114, 19);
 		contentPane.add(edID);
@@ -269,7 +276,7 @@ public class JCadastroVeiculo extends JFrame {
 			}
 		});
 		
-		btGravar.setBounds(378, 182, 102, 23);
+		btGravar.setBounds(378, 150, 102, 23);
 		contentPane.add(btGravar);
 		
 		
@@ -318,8 +325,17 @@ public class JCadastroVeiculo extends JFrame {
 		contentPane.add(btFechar);
 		
 		JButton btConsultar = new JButton("Consultar");
-		btConsultar.setBounds(370, 146, 121, 23);
+		btConsultar.setBounds(378, 119, 102, 23);
 		contentPane.add(btConsultar);
+		
+		JLabel lbStatus = new JLabel("<Aguardadando>");
+		lbStatus.setBounds(369, 276, 132, 15);
+		contentPane.add(lbStatus);
+		
+		JButton btExcluir = new JButton("Excuir");
+		btExcluir.setEnabled(false);
+		btExcluir.setBounds(378, 181, 102, 23);
+		contentPane.add(btExcluir);
 
 	}
 }
