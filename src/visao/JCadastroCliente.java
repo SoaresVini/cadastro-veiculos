@@ -171,31 +171,21 @@ public class JCadastroCliente extends JFrame {
 		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.addActionListener(new ActionListener() {
-			
-			
+						
 			public void actionPerformed(ActionEvent e) {
-				
-				
-		
-		
 			boolean  Encontrou = false;
 			CClienteControl cC = new CClienteControl();
 			ArrayList<MCliente> Clientes = cC.listaCliente();
-	     
 	        	for (MCliente mCliente : Clientes) {
 	        		if(edCpf.getText().equals(mCliente.getwCpf())){
 	        		 Encontrou = true;    
+	        		}
 	        	}
-	        }
-	        	
 		        if (Encontrou == true) {
 		            JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
 		            		                            + "ou alterar os Dados dele");
-		        
 		            for (MCliente mCliente : Clientes) {
 		            	if(edCpf.getText().equals(mCliente.getwCpf())){
-		            		
-		          
 		        			edNome.setText(mCliente.getwNome());
 		        			edCnh.setText(mCliente.getwCarteiraMotorista());
 		        			cbSexo.setSelectedItem(mCliente.getwSexo());
@@ -203,10 +193,7 @@ public class JCadastroCliente extends JFrame {
 		        			edTelefone.setText(mCliente.getwNumeroTelefone());
 		        			String wDate = String.valueOf(mCliente.getwDataNascimento());
 		        			edData.setText( wDate);
-		        				
-		    				
 		            	}
-		            	
 		            }
 		            
 		            

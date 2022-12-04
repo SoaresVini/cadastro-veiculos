@@ -179,7 +179,25 @@ public class JCadastroVeiculo extends JFrame {
 		// Botões 
 		JButton btGravar = new JButton("Gravar");
 		btGravar.addActionListener(new ActionListener() {
-					
+			
+			public void actionPerformed1(ActionEvent e) {
+				boolean  wEncontrou = false;
+				CVeiculoControl cv = new CVeiculoControl();
+				ArrayList<MVeiculo> Veiculos = cv.listaVeiculos();
+				for (MVeiculo mV : Veiculos) {
+					if(edID.getText().equals(mV.getwIDVeiculo())) {
+						wEncontrou = true;
+					}
+				}
+				if (wEncontrou == true) {
+					for (MVeiculo mV : Veiculos) {
+						if(edID.getText().equals(mV.getwIDVeiculo())) {
+							Integer wID = Integer.valueOf(edID.getText());
+							cv.alterar(mV, wID);						
+						}
+					}
+				}
+			}
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Integer wID			= Integer.valueOf(edID.getText());	
@@ -333,7 +351,18 @@ public class JCadastroVeiculo extends JFrame {
 		contentPane.add(lbStatus);
 		
 		JButton btExcluir = new JButton("Excuir");
-		btExcluir.setEnabled(false);
+		btExcluir.addActionListener(new ActionListener() {
+		CVeiculoControl cv = new CVeiculoControl();
+		ArrayList<MVeiculo> Veiculos = cv.listaVeiculos();
+			public void actionPerformed(ActionEvent e) {
+				for (MVeiculo mV : Veiculos) {
+					if (edID.getText().equals(mV.getwIDVeiculo())) {
+						Integer wID = Integer.valueOf(edID.getText());
+						cv.deletar(mV, wID);
+					}
+				}
+			}
+		});
 		btExcluir.setBounds(378, 181, 102, 23);
 		contentPane.add(btExcluir);
 
