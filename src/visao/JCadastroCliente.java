@@ -10,6 +10,7 @@ import javax.xml.crypto.Data;
 
 import controle.CClienteControl;
 import modelo.MCliente;
+import modelo.MVeiculo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edGmail;
 	private JTextField edData;
 	private ArrayList<MCliente> Clientes;
-	public	boolean  Encontrou ;
+	public	boolean  wEncontrou ;
 
 	JMenu menu = new JMenu();
 
@@ -157,29 +158,8 @@ public class JCadastroCliente extends JFrame {
 		edData.setBounds(147, 89, 148, 20);
 		contentPane.add(edData);
 
-		CClienteControl cC = new CClienteControl();
-		ArrayList<MCliente> Clientes = cC.listaCliente();
-		boolean teste = false;
-		
-		if ( cC.listaCliente() == null ) {
+
 			
-			edNome.setEditable(true);
-			edCnh.setEditable(true);
-			edData.setEditable(true);
-			edGmail.setEditable(true);
-			edTelefone.setEditable(true);
-			
-				
-		}else {
-			
-			edNome.setEditable(false);
-			edCnh.setEditable(false);
-			edData.setEditable(false);
-			edGmail.setEditable(false);
-			edTelefone.setEditable(false);
-	}	
-		
-		
 		JButton btnFechar = new JButton("Fechar");
 		btnFechar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -190,52 +170,45 @@ public class JCadastroCliente extends JFrame {
 		
 		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
-		JButton btConsultar = new JButton("Consultar");
-		btConsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				CClienteControl cC = new CClienteControl();
-				ArrayList<MCliente> Clientes = cC.listaCliente();
-				for (MCliente mCliente : Clientes) {
-	        		if(edCpf.getText().equals(mCliente.getwCpf())){
-	        		 Encontrou = true;    
-	        		}
-	        	}
-				
-			
-			}
-		});
-		
-		btConsultar.setBounds(381, 161, 120, 23);
-		contentPane.add(btConsultar);
+
 		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.addActionListener(new ActionListener() {
 						
 			public void actionPerformed(ActionEvent e) {
 			
-			CClienteControl cC = new CClienteControl();
-			ArrayList<MCliente> Clientes = cC.listaCliente();
-			
-
-			 if (Encontrou == true) {
-		            
-				 JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
-		            		                            + "ou alterar os Dados dele");
-		            for (MCliente mCliente : Clientes) {
-		            	if(edCpf.getText().equals(mCliente.getwCpf())){
-		        			edNome.setText(mCliente.getwNome());
-		        			edCnh.setText(mCliente.getwCarteiraMotorista());
-		        			cbSexo.setSelectedItem(mCliente.getwSexo());
-		        			edGmail.setText(mCliente.getwGmail());
-		        			edTelefone.setText(mCliente.getwNumeroTelefone());
-		        			String wDate = String.valueOf(mCliente.getwDataNascimento());
-		        			edData.setText( wDate);
-		            	}
-		            }
-			 }
+				CClienteControl cC = new CClienteControl();
+				ArrayList<MCliente> Clientes = cC.listaCliente();
 			 
-		            	
+				MCliente Mc = new MCliente();
+				for (MCliente mCliente : Clientes) {
+	        		if(edCpf.getText().equals(mCliente.getwCpf()) || wEncontrou == true){
+	        			JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
+		                            + "ou alterar os Dados dele");
+	        		 wEncontrou = true;  
+	        		 
+	        		}
+	        	}
+				
+				 if (wEncontrou == true) {
+
+			            for (MCliente mCliente : Clientes) {
+			            	if(edCpf.getText().equals(mCliente.getwCpf())){
+			        			edNome.setText(mCliente.getwNome());
+			        			edCnh.setText(mCliente.getwCarteiraMotorista());
+			        			cbSexo.setSelectedItem(mCliente.getwSexo());
+			        			edGmail.setText(mCliente.getwGmail());
+			        			edTelefone.setText(mCliente.getwNumeroTelefone());
+			        			String wDate = String.valueOf(mCliente.getwDataNascimento());
+			        			edData.setText( wDate);
+			        			 String CPF = edCpf.getText();
+			        			
+			        			cC.alterar(Mc);
+			        			
+			            	}
+			            }
+		
+				}else {        	
 			
 				String wCpf      = edCpf.getText();
 				String wNome     = edNome.getText();
@@ -248,7 +221,6 @@ public class JCadastroCliente extends JFrame {
 
 				Integer contValidacao = 0;
 
-				MCliente Mc = new MCliente();
 				
 				// Dados nome do Cliente
 				if (wNome == null || wNome.isEmpty()) {
@@ -326,7 +298,8 @@ public class JCadastroCliente extends JFrame {
 
 				}
 				
-		        }
+				}
+			}
 		});
 		btGravar.setBounds(390, 193, 102, 23);
 		contentPane.add(btGravar);
@@ -366,3 +339,4 @@ public class JCadastroCliente extends JFrame {
 
 	}
 }
+
