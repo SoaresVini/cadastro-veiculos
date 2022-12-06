@@ -122,6 +122,8 @@ public class JMenu extends JFrame {
 		tbCliente.setModel(modeloCliente);
 		spCliente.setViewportView(tbCliente);
 
+		
+		
 		JScrollPane spVeiculo = new JScrollPane();
 		spVeiculo.setBounds(12, 258, 904, 119);
 		contentPane.add(spVeiculo);

@@ -37,8 +37,8 @@ public class JCadastroCliente extends JFrame {
 	private JTextField edTelefone;
 	private JTextField edGmail;
 	private JTextField edData;
-	private ArrayList<MCliente> Cliente;
-	
+	private ArrayList<MCliente> Clientes;
+	public	boolean  Encontrou ;
 
 	JMenu menu = new JMenu();
 
@@ -157,6 +157,29 @@ public class JCadastroCliente extends JFrame {
 		edData.setBounds(147, 89, 148, 20);
 		contentPane.add(edData);
 
+		CClienteControl cC = new CClienteControl();
+		ArrayList<MCliente> Clientes = cC.listaCliente();
+		boolean teste = false;
+		
+		if ( cC.listaCliente() == null ) {
+			
+			edNome.setEditable(true);
+			edCnh.setEditable(true);
+			edData.setEditable(true);
+			edGmail.setEditable(true);
+			edTelefone.setEditable(true);
+			
+				
+		}else {
+			
+			edNome.setEditable(false);
+			edCnh.setEditable(false);
+			edData.setEditable(false);
+			edGmail.setEditable(false);
+			edTelefone.setEditable(false);
+	}	
+		
+		
 		JButton btnFechar = new JButton("Fechar");
 		btnFechar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -164,25 +187,40 @@ public class JCadastroCliente extends JFrame {
 
 			}
 		});
+		
 		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
-
+		JButton btConsultar = new JButton("Consultar");
+		btConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				CClienteControl cC = new CClienteControl();
+				ArrayList<MCliente> Clientes = cC.listaCliente();
+				for (MCliente mCliente : Clientes) {
+	        		if(edCpf.getText().equals(mCliente.getwCpf())){
+	        		 Encontrou = true;    
+	        		}
+	        	}
+				
+			
+			}
+		});
 		
+		btConsultar.setBounds(381, 161, 120, 23);
+		contentPane.add(btConsultar);
 		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.addActionListener(new ActionListener() {
 						
 			public void actionPerformed(ActionEvent e) {
-			boolean  Encontrou = false;
+			
 			CClienteControl cC = new CClienteControl();
 			ArrayList<MCliente> Clientes = cC.listaCliente();
-	        	for (MCliente mCliente : Clientes) {
-	        		if(edCpf.getText().equals(mCliente.getwCpf())){
-	        		 Encontrou = true;    
-	        		}
-	        	}
-		        if (Encontrou == true) {
-		            JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
+			
+
+			 if (Encontrou == true) {
+		            
+				 JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
 		            		                            + "ou alterar os Dados dele");
 		            for (MCliente mCliente : Clientes) {
 		            	if(edCpf.getText().equals(mCliente.getwCpf())){
@@ -195,42 +233,10 @@ public class JCadastroCliente extends JFrame {
 		        			edData.setText( wDate);
 		            	}
 		            }
-		            
-		            
-    				
-        			/*
-        			
-        			Coloca o CPF em primeiro lugar e força de alguma forma 
-    				o usuario a consultar antes de preencher as outras info
-    				
-    				Se der para forçar a parada do Botão consultar, passa todo essa parte que 
-    				para esse botão e so deixa a parte q ja tava aqui 
-    			
-        			 
-        			Cria um botão alterar e bota coloca aqui para ele ser
-        			liberado quando entrar nesse laço
-        			
-        			bota toda a parte que ta no gravar mais que ta isso dentro do botão alterar e 
-        			adiciona aquele metodo do Jpanel para funcionar em algum lugar kkkkkkkkkkkkkkk
-        			
-        			
-        			MCliente Mc = new MCliente();
-        			
-        			CClienteControl TableCliente = CClienteControl.getInstancia();
-    				Boolean  update = TableCliente.alterar(Mc,wCpf );
-    				
-    				O deletar se pah que só criar o botão deletar e bota o metodo que ta la no controle 
-    				
-    				
-    				
-    				
-        			*/
-	        	
-	   
-		
-		        } else {
-		        	
-		       // parte que já tava aqui 
+			 }
+			 
+		            	
+			
 				String wCpf      = edCpf.getText();
 				String wNome     = edNome.getText();
 				String wCnh      = edCnh.getText();
@@ -321,7 +327,6 @@ public class JCadastroCliente extends JFrame {
 				}
 				
 		        }
-			}
 		});
 		btGravar.setBounds(390, 193, 102, 23);
 		contentPane.add(btGravar);
@@ -357,9 +362,7 @@ public class JCadastroCliente extends JFrame {
 		btVoltar.setBounds(22, -5, 46, 25);
 		contentPane.add(btVoltar);
 		
-		JButton btConsultar = new JButton("Consultar");
-		btConsultar.setBounds(381, 161, 120, 23);
-		contentPane.add(btConsultar);
+	
 
 	}
 }
