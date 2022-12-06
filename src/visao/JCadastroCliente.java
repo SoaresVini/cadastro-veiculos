@@ -1,6 +1,6 @@
 package visao;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -171,26 +171,28 @@ public class JCadastroCliente extends JFrame {
 		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
 
-		
-		JButton btGravar = new JButton("Gravar");
-		btGravar.addActionListener(new ActionListener() {
-						
+		JButton btnVaiSeFoder = new JButton("Preencher");
+		btnVaiSeFoder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				CClienteControl cC = new CClienteControl();
 				ArrayList<MCliente> Clientes = cC.listaCliente();
 			 
 				MCliente Mc = new MCliente();
-				for (MCliente mCliente : Clientes) {
-	        		if(edCpf.getText().equals(mCliente.getwCpf()) || wEncontrou == true){
-	        			JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
-		                            + "ou alterar os Dados dele");
-	        		 wEncontrou = true;  
-	        		 
-	        		}
+				
+				if(wEncontrou == false) {
+					for (MCliente mCliente : Clientes) {
+		        		if(edCpf.getText().equals(mCliente.getwCpf()) && wEncontrou == false){
+		        			JOptionPane.showMessageDialog(null, "Cliente já está cadastro, você pode deletar "
+			                            + "ou alterar os Dados dele");
+		        		 wEncontrou = true;  
+		        		 
+		        		}
+				}
+				
 	        	}
 				
-				 if (wEncontrou == true) {
+
+				if(wEncontrou == true) {
 
 			            for (MCliente mCliente : Clientes) {
 			            	if(edCpf.getText().equals(mCliente.getwCpf())){
@@ -201,15 +203,33 @@ public class JCadastroCliente extends JFrame {
 			        			edTelefone.setText(mCliente.getwNumeroTelefone());
 			        			String wDate = String.valueOf(mCliente.getwDataNascimento());
 			        			edData.setText( wDate);
-			        			 String CPF = edCpf.getText();
-			        			
-			        			cC.alterar(Mc);
-			        			
-			            	}
-			            }
 		
-				}else {        	
-			
+			            	}
+		
+			            }
+			      
+			            
+		
+				}
+				
+			}
+		});
+		btnVaiSeFoder.setBounds(393, 140, 102, 23);
+		contentPane.add(btnVaiSeFoder);
+		
+		
+		JButton btGravar = new JButton("Gravar");
+		btGravar.addActionListener(new ActionListener() {
+						
+			public void actionPerformed(ActionEvent e) {
+				
+				CClienteControl cC = new CClienteControl();
+				ArrayList<MCliente> Clientes = cC.listaCliente();
+				MCliente Mc = new MCliente();
+				
+				if(wEncontrou == false) {
+					
+
 				String wCpf      = edCpf.getText();
 				String wNome     = edNome.getText();
 				String wCnh      = edCnh.getText();
@@ -297,8 +317,16 @@ public class JCadastroCliente extends JFrame {
 					dispose();
 
 				}
-				
+				}else {
+					String wNome     = edNome.getText();
+					Mc.setwNome(wNome);
+					
+					String wCpf = edCpf.getText();
+					Mc.setwCpf(wCpf);
+					
+					cC.alterar(Mc, wCpf);
 				}
+		
 			}
 		});
 		btGravar.setBounds(390, 193, 102, 23);
@@ -334,6 +362,7 @@ public class JCadastroCliente extends JFrame {
 		});
 		btVoltar.setBounds(22, -5, 46, 25);
 		contentPane.add(btVoltar);
+		
 		
 	
 

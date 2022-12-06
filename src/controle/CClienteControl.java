@@ -31,10 +31,11 @@ public class CClienteControl {
 		return false;
 	}
 	//UPDATE
-	public Boolean alterar(MCliente c) {
-		
-		MCliente mc = new MCliente();
-		
+	public Boolean alterar(MCliente c, String cpfCliente) {
+
+			for(MCliente mc : TableClientes) {
+				if (mc.getwCpf().equals(cpfCliente) ) {
+					
 				mc.setwCpf				(c.getwCpf());
 				mc.setwCarteiraMotorista(c.getwCarteiraMotorista());
 				mc.setwSexo				(c.getwSexo());
@@ -42,11 +43,13 @@ public class CClienteControl {
 				mc.setwNumeroTelefone	(c.getwNumeroTelefone());
 				mc.setwGmail			(c.getwGmail());
 				mc.setwDataNascimento	(c.getwDataNascimento());
-				
-				return null;
-				
+		
+			return true;
+		}
 	}
+	return false;
 
+	}
 	
 	//DELETE
 	public Boolean deletar(MCliente c, String cpfCliente) {
