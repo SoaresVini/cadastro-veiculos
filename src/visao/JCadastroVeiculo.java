@@ -41,6 +41,7 @@ public class JCadastroVeiculo extends JFrame {
 	private JTextField edMarca;
 	private JTextField edFabricacao;
 	private JTextField edID;
+	Boolean wEncontrou = false;
 
 	public JCadastroVeiculo() {
 		
@@ -56,7 +57,7 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbStatus = new JLabel("<Aguardadando>");
 		lbStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		lbStatus.setBounds(378, 243, 102, 15);
+		lbStatus.setBounds(365, 258, 125, 15);
 		contentPane.add(lbStatus);
 		
 		JLabel lbTitulo = new JLabel("Cadastro de Veiculo");
@@ -129,7 +130,7 @@ public class JCadastroVeiculo extends JFrame {
 		ArrayList<MCliente> listaClientes = cC.listaCliente();
 		
 		JComboBox cbDonoVeiculo = new JComboBox();
-		cbDonoVeiculo.addItem(("Ana f - Mulher do Caua"));
+		cbDonoVeiculo.addItem((""));
 		if (listaClientes.size() > 0 && listaClientes != null) {
 			for (MCliente cCliente : listaClientes) {
 				cbDonoVeiculo.addItem((cCliente));
@@ -147,6 +148,12 @@ public class JCadastroVeiculo extends JFrame {
 		
 		edPlaca = new JTextField();
 		edPlaca.setColumns(10);
+		try{
+
+			edPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));
+		}
+		catch(ParseException excp){
+		} 
 		edPlaca.setBounds(202, 94, 114, 19);
 		contentPane.add(edPlaca);
 		
@@ -183,17 +190,28 @@ public class JCadastroVeiculo extends JFrame {
 		btnPreencher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Integer wIDVei	   = Integer.valueOf(edID.getText());
-				Boolean wEncontrou = false;
-            	
+
 				if (wIDVei != null) {
 					
 					CVeiculoControl cv = new CVeiculoControl();
 					ArrayList<MVeiculo> Veiculos = cv.listaVeiculos();
 					MVeiculo mv = new MVeiculo();
 
+					if(wEncontrou == false) {
 					for (MVeiculo v : Veiculos) {
 						if (wIDVei.equals(v.getwIDVeiculo())) {
-							JOptionPane.showInternalMessageDialog(null, "Achou");
+			        			JOptionPane.showMessageDialog(null, "Veiculo já está cadastrado, você pode deletar "
+				                            + "ou alterar os Dados dele");
+			        		 wEncontrou = true;  
+			        		 lbStatus.setText("Alterando");
+			        		}
+					}
+					
+		        	}
+					
+					if(wEncontrou == true) {
+					for (MVeiculo v : Veiculos) {
+						if (wIDVei.equals(v.getwIDVeiculo())) {
 							edPlaca		 .setText		 (v.getwPlaca());
 			        		edCor		 .setText		 (v.getwCor());
 			        		edMarca		 .setText		 (v.getwMarca());
@@ -205,8 +223,9 @@ public class JCadastroVeiculo extends JFrame {
 						}
 					}
 					if (wEncontrou != true) {
-						lbStatus.setText("Novo Pedido!");
+						lbStatus.setText("Novo veiculo!");
 					} 
+				}
 				}
 			}
 		});
@@ -222,71 +241,177 @@ public class JCadastroVeiculo extends JFrame {
 				ArrayList<MVeiculo> Veiculos = cv.listaVeiculos();
 				MVeiculo mv = new MVeiculo();
 				
-				Integer wIDVei	   = Integer.valueOf(edID.getText());
-				Boolean wEncontrou = false;
+				Integer wID    = Integer.valueOf(edID.getText());
+				String  wPlaca = edPlaca.getText();
+				String  wCor   = edCor.getText();
+				String  wMarca = edMarca.getText();
+				String  wCombustivel = cbCombustivel.getSelectedItem().toString();
+				String  wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();
+				String  wDonoVeiculo = cbDonoVeiculo.getSelectedItem().toString();
+				LocalDate wAnoModelo = LocalDate.parse(edFabricacao.getText(),
+				DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+				Integer contValidacao = 0;
 				
-				for (MVeiculo v : Veiculos) {
-					if (wIDVei.equals(v.getwIDVeiculo())) {wEncontrou = true;}}
+				if (wEncontrou == false) {
 					
-				if (wEncontrou == true) {
-					cv.alterar(mv, wIDVei);
-				} else {
+					if (wPlaca == null || wPlaca .isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a Placa");
 
-					Integer wID    = Integer.valueOf(edID.getText());
-					String  wPlaca = edPlaca.getText();
-					String  wCor   = edCor.getText();
-					String  wMarca = edMarca.getText();
-					String  wCombustivel = cbCombustivel.getSelectedItem().toString();
-					String  wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();
-					String  wDonoVeiculo = cbDonoVeiculo.getSelectedItem().toString();
-					LocalDate wAnoModelo = LocalDate.parse(edFabricacao.getText(),
-					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-					if (wID 		 != null && 
-						wPlaca 	 	 != null && 
-						wPlaca 		 != null && 
-						wMarca 		 != null && 
-						wCombustivel != null && 
-						wTipoVeiculo != null && 
-						wDonoVeiculo != null && 
-						wAnoModelo 	 != null) {
-
-						Integer contValidacao = 0;
-
-						mv.setwIDVeiculo(wID);
-						contValidacao++;
-
-						mv.setwDonoVeiculo(wDonoVeiculo);
-						contValidacao++;
-
+					} else {
 						mv.setwPlaca(wPlaca);
 						contValidacao++;
+					}
+					
+					if (wID == null) {
+						JOptionPane.showMessageDialog(null, "Preencha o ID");
 
-						mv.setwCor(wCor);
+					} else {
+						mv.setwIDVeiculo(wID);
 						contValidacao++;
+					}
+					if (wMarca == null || wMarca.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a Marca do carro");
 
+					} else {
 						mv.setwMarca(wMarca);
 						contValidacao++;
+					}
+					if (wCombustivel == null || wCombustivel.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Combustivel");
 
+					} else {
 						mv.setwCombustivel(wCombustivel);
 						contValidacao++;
+					}
+					
+					if (wTipoVeiculo == null || wTipoVeiculo.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Tipo do veiculo");
 
+					} else {
 						mv.setwTipoVeiculo(wTipoVeiculo);
 						contValidacao++;
 
+					}
+					if (wDonoVeiculo == null || wDonoVeiculo.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Dono do veiculo");
+
+					} else {
+						mv.setwDonoVeiculo(wDonoVeiculo);
+						contValidacao++;
+					}
+					
+					if (wAnoModelo  == null) {
+						JOptionPane.showMessageDialog(null, "Preencha o Ano do modelo");
+
+					} else {
 						mv.setwAnoModelo(wAnoModelo);
 						contValidacao++;
-
-						CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
-						Boolean insert = TableVeiculo.inserir(mv);
-
-						if (contValidacao == 8) {
-							JOptionPane.showMessageDialog(null, "Dados confirmados");
-							contValidacao = 0;
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Preencha todos os dados para continuar");
+					
 					}
+					if (wCor == null || wCor .isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a cor do veiculo");
+
+					} else {
+						mv.setwCor(wCor);
+						contValidacao++;
+					
+					}
+
+				
+
+					CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
+					Boolean insert = TableVeiculo.inserir(mv);
+
+					if (contValidacao == 8) {
+						JOptionPane.showMessageDialog(null, "Dados confirmados");
+						JMenu m = new JMenu();
+						m.setLocationRelativeTo(null);
+						m.setVisible(true);
+						dispose();
+						contValidacao = 0;
+					}
+						
+			
+				} else {
+
+					if (wPlaca == null || wPlaca .isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a Placa");
+
+					} else {
+						mv.setwPlaca(wPlaca);
+						contValidacao++;
+					}
+					
+					if (wID == null) {
+						JOptionPane.showMessageDialog(null, "Preencha o ID");
+
+					} else {
+						mv.setwIDVeiculo(wID);
+						contValidacao++;
+					}
+					if (wMarca == null || wMarca.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a Marca do carro");
+
+					} else {
+						mv.setwMarca(wMarca);
+						contValidacao++;
+					}
+					if (wCombustivel == null || wCombustivel.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Combustivel");
+
+					} else {
+						mv.setwCombustivel(wCombustivel);
+						contValidacao++;
+					}
+					
+					if (wTipoVeiculo == null || wTipoVeiculo.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Tipo do veiculo");
+
+					} else {
+						mv.setwTipoVeiculo(wTipoVeiculo);
+						contValidacao++;
+
+					}
+					if (wDonoVeiculo == null || wDonoVeiculo.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha o Dono do veiculo");
+
+					} else {
+						mv.setwDonoVeiculo(wDonoVeiculo);
+						contValidacao++;
+					}
+					
+					if (wAnoModelo  == null ) {
+						JOptionPane.showMessageDialog(null, "Preencha o Ano do modelo");
+
+					} else {
+						mv.setwAnoModelo(wAnoModelo);
+						contValidacao++;
+					
+					}
+					if (wCor == null || wCor .isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Preencha a cor do veiculo");
+
+					} else {
+						mv.setwCor(wCor);
+						contValidacao++;
+					
+					}
+
+				
+
+					CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
+					Boolean alterar = TableVeiculo.alterar(mv, wID) ;
+
+					if (contValidacao == 8) {
+						JOptionPane.showMessageDialog(null, "Dados confirmados");
+						JMenu m = new JMenu();
+						m.setLocationRelativeTo(null);
+						m.setVisible(true);
+						dispose();
+						contValidacao = 0;
+					}
+						
 				}
 			}
 		});
@@ -297,7 +422,8 @@ public class JCadastroVeiculo extends JFrame {
 		JButton btLimpar = new JButton("Limpar");
 		btLimpar.setBounds(378, 181, 102, 23);
 		btLimpar.addActionListener(new ActionListener() {
-			@Override
+
+	@Override
 			public void actionPerformed(ActionEvent e) {
 				edID		 .setText("");
 				cbCombustivel.setSelectedItem("");
@@ -344,6 +470,13 @@ public class JCadastroVeiculo extends JFrame {
 					if (wIDVei.equals(v.getwIDVeiculo())) {
 						cv.deletar(mv, wIDVei);
 						JOptionPane.showMessageDialog(null, "Veiculo " + wIDVei + " Excluido!");
+						edID		 .setText("");
+						cbCombustivel.setSelectedItem("");
+						cbTipoVeiculo.setSelectedItem("");
+						edCor.		  setText("");
+						edFabricacao. setText("");
+						edMarca.      setText("");
+						edPlaca.      setText("");	
 					}
 				}
 			}
@@ -352,6 +485,5 @@ public class JCadastroVeiculo extends JFrame {
 		contentPane.add(btExcluir);
 	
 	}
-	
-}
 
+}
