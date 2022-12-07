@@ -171,8 +171,9 @@ public class JCadastroCliente extends JFrame {
 		btnFechar.setBounds(390, 261, 102, 23);
 		contentPane.add(btnFechar);
 
-		JButton btnVaiSeFoder = new JButton("Preencher");
-		btnVaiSeFoder.addActionListener(new ActionListener() {
+		JButton btnPreencher = new JButton("Preencher");
+		btnPreencher.setFont(new Font("Dialog", Font.BOLD, 9));
+		btnPreencher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CClienteControl cC = new CClienteControl();
 				ArrayList<MCliente> Clientes = cC.listaCliente();
@@ -214,8 +215,8 @@ public class JCadastroCliente extends JFrame {
 				
 			}
 		});
-		btnVaiSeFoder.setBounds(393, 140, 102, 23);
-		contentPane.add(btnVaiSeFoder);
+		btnPreencher.setBounds(393, 153, 102, 23);
+		contentPane.add(btnPreencher);
 		
 		
 		JButton btGravar = new JButton("Gravar");

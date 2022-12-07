@@ -155,13 +155,23 @@ public class JMenu extends JFrame {
 		DefaultTableModel modeloCliente = new DefaultTableModel(new Object[][] {},
 				new String[] { "Nome", "CPF", "Data Nasc.", "CNH", "Sexo", "Telefone", "Gmail" });
 		for (MCliente Cliente : listaClientes) {
-			modeloCliente.addRow(new Object[] { 
-					Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
+			modeloCliente.addRow(new Object[] { Cliente.getwNome(), Cliente.getwCpf(), Cliente.getwDataNascimento(),
 					Cliente.getwCarteiraMotorista(), Cliente.getwSexo(), Cliente.getwNumeroTelefone(),
 					Cliente.getwGmail() });
 		}
-
 		tbCliente.setModel(modeloCliente);
+	}
 
+	protected void atualizarTableVeiculo() {
+		CVeiculoControl cv = new CVeiculoControl();
+		ArrayList<MVeiculo> Veiculos = cv.listaVeiculos();
+		DefaultTableModel modeloVeiculo = new DefaultTableModel(new Object[][] {}, new String[] { "IDVeiculo",
+				"Dono Veiculo", "Tipo Veiculo", "Marca", "Placa", "Ano Modelo", "Combustivel", "Cor", "Nacional" });
+		for (MVeiculo Veiculo : Veiculos) {
+			modeloVeiculo.addRow(new Object[] { Veiculo.getwIDVeiculo(), Veiculo.getwDonoVeiculo(),
+					Veiculo.getwTipoVeiculo(), Veiculo.getwMarca(), Veiculo.getwPlaca(), Veiculo.getwAnoModelo(),
+					Veiculo.getwCombustivel(), Veiculo.getwCor(), Veiculo.getwNacional() });
+		};
+		tbCliente.setModel(modeloVeiculo);
 	}
 }
