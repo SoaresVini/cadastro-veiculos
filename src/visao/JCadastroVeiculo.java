@@ -37,7 +37,6 @@ public class JCadastroVeiculo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField edPlaca;
-	private JTextField edCor;
 	private JTextField edMarca;
 	private JTextField edFabricacao;
 	private JTextField edID;
@@ -81,7 +80,7 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbCor = new JLabel("Cor:");
 		lbCor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbCor.setBounds(118, 150, 39, 15);
+		lbCor.setBounds(118, 156, 39, 15);
 		contentPane.add(lbCor);
 		
 		JLabel lbID = new JLabel("ID do Veiculo:");
@@ -91,7 +90,7 @@ public class JCadastroVeiculo extends JFrame {
 		
 		JLabel lbMarca = new JLabel("Marca:");
 		lbMarca.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbMarca.setBounds(104, 177, 53, 15);
+		lbMarca.setBounds(105, 181, 53, 15);
 		contentPane.add(lbMarca);
 		
 		JLabel lbCombustivel = new JLabel("Tipo de Combustivel:");
@@ -130,7 +129,7 @@ public class JCadastroVeiculo extends JFrame {
 		ArrayList<MCliente> listaClientes = cC.listaCliente();
 		
 		JComboBox cbDonoVeiculo = new JComboBox();
-		cbDonoVeiculo.addItem((""));
+		cbDonoVeiculo.addItem("");
 		if (listaClientes.size() > 0 && listaClientes != null) {
 			for (MCliente cCliente : listaClientes) {
 				cbDonoVeiculo.addItem((cCliente));
@@ -138,6 +137,17 @@ public class JCadastroVeiculo extends JFrame {
 		}
 		cbDonoVeiculo.setBounds(202, 65, 114, 23);
 		contentPane.add(cbDonoVeiculo);
+		
+		JComboBox<String> cbCorVeiculo = new JComboBox();
+		cbCorVeiculo.setBounds(202, 152, 114, 23);
+		cbCorVeiculo.addItem("");
+		cbCorVeiculo.addItem("Preto");
+		cbCorVeiculo.addItem("Branco");
+		cbCorVeiculo.addItem("Vermelho");
+		cbCorVeiculo.addItem("Cinza");
+		cbCorVeiculo.addItem("Azul");
+		cbCorVeiculo.addItem("Outros");
+		contentPane.add(cbCorVeiculo);
 		
 		JCheckBox ckFabicacao = new JCheckBox("Fabricação Nacional");
 		ckFabicacao.setFont(new Font("FreeSans", Font.BOLD, 10));
@@ -157,14 +167,9 @@ public class JCadastroVeiculo extends JFrame {
 		edPlaca.setBounds(202, 94, 114, 19);
 		contentPane.add(edPlaca);
 		
-		edCor = new JTextField();
-		edCor.setColumns(10);
-		edCor.setBounds(202, 148, 114, 19);
-		contentPane.add(edCor);
-		
 		edMarca = new JTextField();
 		edMarca.setColumns(10);
-		edMarca.setBounds(202, 175, 114, 19);
+		edMarca.setBounds(203, 179, 114, 19);
 		contentPane.add(edMarca);
 		
 		edID = new JTextField();
@@ -211,14 +216,26 @@ public class JCadastroVeiculo extends JFrame {
 						for (MVeiculo v : Veiculos) {
 							if (wIDVei.equals(v.getwIDVeiculo())) {
 								edPlaca		 .setText		 (v.getwPlaca());
-				        		edCor		 .setText		 (v.getwCor());
+				        		cbCorVeiculo.setSelectedItem (v.getwCor());
 				        		edMarca		 .setText		 (v.getwMarca());
-								cbDonoVeiculo.setSelectedItem(v.getwDonoVeiculo());
 				        		cbTipoVeiculo.setSelectedItem(v.getwTipoVeiculo());
 				        		cbCombustivel.setSelectedItem(v.getwCombustivel());
+				        		cbDonoVeiculo.setSelectedItem(v.getwDonoVeiculo());
+				        		
+				        		if(v.getwNacional() == "Sim") {
+				        			ckFabicacao.setSelected(true);
+				        		}
+				        		else {
+				        			ckFabicacao.setSelected(false);
+				        		}
 				        		wEncontrou = true;
-				        		lbStatus.setText("Alterando");
+				        		lbStatus.setText("Alterando");	
+				        		
+				        		for (MCliente c: listaClientes) {
+									
+								}
 							}
+							
 						}
 						if (wEncontrou != true) {
 							lbStatus.setText("Novo veiculo!");
@@ -241,11 +258,12 @@ public class JCadastroVeiculo extends JFrame {
 				
 				Integer wID    = Integer.valueOf(edID.getText());
 				String  wPlaca = edPlaca.getText();
-				String  wCor   = edCor.getText();
+				String  wCor   = cbCorVeiculo.getSelectedItem().toString();
 				String  wMarca = edMarca.getText();
 				String  wCombustivel = cbCombustivel.getSelectedItem().toString();
 				String  wTipoVeiculo = cbTipoVeiculo.getSelectedItem().toString();
 				String  wDonoVeiculo = cbDonoVeiculo.getSelectedItem().toString();
+				String Fabricação; 
 				LocalDate wAnoModelo = LocalDate.parse(edFabricacao.getText(),
 				DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
@@ -316,10 +334,21 @@ public class JCadastroVeiculo extends JFrame {
 					
 					}
 
+					
+					if (ckFabicacao.isSelected() == true) {
+						Fabricação = "Sim";
+						mv.setwNacional(Fabricação);
+						contValidacao++;
+					}else {
+						Fabricação = "Não";
+						mv.setwNacional(Fabricação);
+						contValidacao++;
+					}
+						
 					CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
 					Boolean insert = TableVeiculo.inserir(mv);
 
-					if (contValidacao == 8) {
+					if (contValidacao == 9) {
 						JOptionPane.showMessageDialog(null, "Dados confirmados");
 						JMenu m = new JMenu();
 						m.setLocationRelativeTo(null);
@@ -386,11 +415,23 @@ public class JCadastroVeiculo extends JFrame {
 						mv.setwCor(wCor);
 						contValidacao++;
 					}
+					
+					if (ckFabicacao.isSelected() == true) {
+						
+						Fabricação = "Sim";
+						mv.setwNacional(Fabricação);
+						contValidacao++;
+					}else {
+						Fabricação = "Não";
+						mv.setwNacional(Fabricação);
+						contValidacao++;
+					}
+						
 
 					CVeiculoControl TableVeiculo = CVeiculoControl.getInstacia();
 					Boolean alterar = TableVeiculo.alterar(mv, wID) ;
 
-					if (contValidacao == 8) {
+					if (contValidacao == 9) {
 						JOptionPane.showMessageDialog(null, "Dados confirmados");
 						JMenu m = new JMenu();
 						m.setLocationRelativeTo(null);
@@ -414,7 +455,7 @@ public class JCadastroVeiculo extends JFrame {
 				edID		 .setText("");
 				cbCombustivel.setSelectedItem("");
 				cbTipoVeiculo.setSelectedItem("");
-				edCor.		  setText("");
+				cbCorVeiculo. setSelectedItem("");
 				edFabricacao. setText("");
 				edMarca.      setText("");
 				edPlaca.      setText("");	
@@ -459,7 +500,7 @@ public class JCadastroVeiculo extends JFrame {
 						edID		 .setText("");
 						cbCombustivel.setSelectedItem("");
 						cbTipoVeiculo.setSelectedItem("");
-						edCor.		  setText("");
+					    cbCorVeiculo .setSelectedItem("");
 						edFabricacao. setText("");
 						edMarca.      setText("");
 						edPlaca.      setText("");	
@@ -469,6 +510,8 @@ public class JCadastroVeiculo extends JFrame {
 		});
 		btExcluir.setBounds(378, 152, 102, 23);
 		contentPane.add(btExcluir);
+		
+	
 
 	}
 }

@@ -38,6 +38,7 @@ public class CVeiculoControl {
 				mv.setwCombustivel	(v.getwCombustivel());
 				mv.setwNacional		(v.getwNacional());
 				mv.setwAnoModelo	(v.getwAnoModelo());
+				mv.setwDonoVeiculo  (v.getwDonoVeiculo());
 				return true;
 			}
 		}

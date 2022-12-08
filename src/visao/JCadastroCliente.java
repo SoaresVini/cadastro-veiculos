@@ -396,6 +396,9 @@ public class JCadastroCliente extends JFrame {
 						contValidacao++;
 						Mc.setwDataNascimento(wData);
 					}
+					
+					CClienteControl TableCliente = CClienteControl.getInstancia();
+					Boolean alterar = TableCliente.alterar(Mc, wCpf);
 
 					if (contValidacao == 7) {
 
@@ -408,7 +411,7 @@ public class JCadastroCliente extends JFrame {
 
 					}
 
-					cC.alterar(Mc, wCpf);
+				
 				}
 
 			}
